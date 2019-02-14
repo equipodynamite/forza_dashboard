@@ -1,24 +1,12 @@
-# README
+# Forza Dashboard
+Financial and Operational Dashboard for Forza Gym's management and customers to track their progress. Developed for Web Development Lab by Team Dynamite Members in collaboration with Forza.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
+## Usage
+## Contributing
+## Contributors
+Developed by: 
++ [@adanvillarreal](https://github.com/adanvillarreal)
++ [@gallosanchez23](https://github.com/gallosanchez23)
++ [@HectorMg](https://github.com/HectorMg)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
