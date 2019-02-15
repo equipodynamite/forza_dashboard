@@ -34,7 +34,6 @@
 # Ignore Docker config files
 Dockerfile
 dev.Dockerfile
-docker-compose.yml
 
 # Ignore dotenv
 .env
