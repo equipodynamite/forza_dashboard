@@ -31,10 +31,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore Docker config files
-Dockerfile
-dev.Dockerfile
-
 # Ignore dotenv
 .env
 dev.env

@@ -1,0 +1,53 @@
+version: '3.3'
+
+volumes:
+  maria_data:
+
+services:
+  mariadb:
+    image: mariadb
+    volumes: 
+      - maria_data:/var/lib/mysql
+    restart: always
+    ports:
+      - ${MARIADB_PORT:-3306}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_PASSWORD:-example}
+
+  test: &app
+    image: equipodynamite/forza_dashboard:development
+    env_file: test.env
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    entrypoint: dev-entrypoint
+    volumes:
+      - .:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mariadb
+    command: rspec
+    environment: &app_environment
+      PATH: /app/bin:/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      DATABASE_URL: ${MARIADB_URL:-}
+      RAILS_ENV: ${RAILS_ENV}
+      RACK_ENV: ${RACK_ENV}
+      RAILS_LOG_TO_STDOUT: "true"
+      MAILER_HOST: localhost
+      MAILER_PORT: 3000
+    
+  web:
+    <<: *app
+    env_file: dev.env
+    command: rails server -p 3000 -b 0.0.0.0
+    ports: 
+      - ${FORZA_DASHBOARD_WEB_PORT:-3000}:3000
+    environment:
+      <<: *app_environment
+      DATABASE_URL: ${MARIADB_URL:-}
+    depends_on:
+      - mariadb
+
+
