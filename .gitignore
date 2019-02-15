@@ -39,4 +39,4 @@ docker-compose.yml
 # Ignore dotenv
 .env
 dev.env
-
+test.env
