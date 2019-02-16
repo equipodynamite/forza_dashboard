@@ -13,6 +13,8 @@ Financial and Operational Dashboard for Forza Gym's management and customers to 
   - [Development](#development)
     - [Installation and Setup](#installation-and-setup)
     - [Running the stack for development](#running-the-stack-for-development)
+    - [Stopping services](#stopping-services)
+    - [Running specs](#running-specs)
 
 ## Project Details
 
@@ -117,17 +119,27 @@ Then enter the `web` service container to create the database:
 `plis`:
 ```bash
 $ plis run web bash
-root@-:~\# rails db:create
 ```
 
 
 `docker-compose`:
 ```bash
 $ docker-compose run web bash
-root@-:~\# rails db:create
+```
+
+When you're inside the container:
+
+```bash
+root@-:~ rails db:create
 ```
 
 After completing this step for the first time, you'll only need to explicitly run the `mariadb` service when performing database-related operations and you won't have to create the database everytime you start the `web` service.
+
+To exit a bash session inside a controler:
+
+```bash
+root@-:~ exit
+```
 
 ### Running the stack for development
 
@@ -139,11 +151,113 @@ After completing this step for the first time, you'll only need to explicitly ru
 $ plis start web && plis attach web
 ```
 
-To start the application and keep the server output on the command line, or
+`docker-compose`:
+
+```bash
+$ docker-compose up 
+```
+
+To start the application and keep the web server output on the command line (for debugging). Use `Ctrl+C` to exit an attached service (this also kills the service). The plis command can be broken up in two. Once a service is running, you can `plis attach [service]` to see the live logs. Otherwise, use the following command(s) to run all services in the background:
+
+`plis`:
 
 ```bash
 $ plis start
 ```
+`docker-compose`:
+
+```bash
+$ docker-compose up -d 
+```
+
+
+### Stopping services
+
+In order to stop `forza_dashboard` entirely you can execute:
+
+`plis`:
+
+```bash
+$ plis stop
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose stop
+```
+
+or (to stop and remove all the containers)
+
+`plis`:
+
+```bash
+$ plis down
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose down
+```
+
+If you only wish to stop one service (services are listed in `docker-compose.yml`) in particular:
+
+`plis`:
+
+```bash
+$ plis stop [service_name]
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose stop web
+```
+
+### Running specs
+
+To run specs, you can do:
+
+`plis`:
+
+```bash
+$ plis run test rspec
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose run test rspec
+```
+
+Or for a specific file:
+
+`plis`:
+
+```bash
+$ plis run test rspec spec/models/user_spec.rb
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose run test rspec spec/models/user_spec.rb
+```
+
+You can also do:
+
+```bash
+$ plis run test bash
+```
+
+And do all the `rspec` operations inside the container's bash console so you don't have to run the service's bash every time.
+
+
+
+
+
+
 
 
 
