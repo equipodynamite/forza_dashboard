@@ -70,7 +70,7 @@ or HTTPS:
 git clone https://github.com/equipodynamite/forza_dashboard.git
 ```
 
-2. You'll need to create the `.env`:
+2. You'll need to create the `.env` file:
 
 ```bash
 $ cd forza_dashboard
@@ -80,7 +80,25 @@ $ touch .env
 This repository includes a template for this file (`example.env`), but you need the ENV variable values to run the project. 
 ***You need to get the content for this file from [@HectorMg](https://github.com/HectorMg).***
 
-3. Run the web service in bash mode
+3. Build the project's Docker image
+
+`plis`:
+
+```bash
+$ plis build
+```
+
+`docker-compose`:
+
+```bash
+$ docker-compose build
+```
+
+This may take some time, but you shouldn't have to do it very often.
+
+***NOTE: Everytime time a new dependency (gem) is added to the Gemfile, you'll have to build the image again so you don't have to re-install the gem every time you start a container.***
+
+4. Run the web service in bash mode
 
 **Remember**, anything you'd regularly do directly in the command line for Rails (`rails db:create`, `rails generate model`, `rails generate controller`, etc..), you must now do inside the `web` service's container. Git and Docker commands must happen outside the container's bash mode (regular shell). 
 
@@ -98,7 +116,7 @@ $ plis run web bash
 $ docker-compose run web bash
 ```
 
-4. Every time you start the application, it is important that you make sure the `mariadb` service is running, otherwise, Rails won't be able to connect to the database. This is usually achieved with the "global" `docker-compose up` or `plis start` command, but it can also be done in isolation. Also, the first time you do this, you must also create the database in the `web` service.
+5. Every time you start the application, it is important that you make sure the `mariadb` service is running, otherwise, Rails won't be able to connect to the database. This is usually achieved with the "global" `docker-compose up` or `plis start` command, but it can also be done in isolation. Also, the first time you do this, you must also create the database in the `web` service.
 
 Starting the mariadb service in isolation and in the background:
 
