@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_02_18_180427) do
 
-  create_table "attendences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_attendences_on_user_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
   create_table "memberships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

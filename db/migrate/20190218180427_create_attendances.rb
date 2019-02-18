@@ -1,6 +1,6 @@
-class CreateAttendences < ActiveRecord::Migration[5.2]
+class CreateAttendances < ActiveRecord::Migration[5.2]
   def change
-    create_table :attendences do |t|
+    create_table :attendances do |t|
       t.datetime :date
       t.references :user
 
