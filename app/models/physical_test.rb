@@ -1,0 +1,2 @@
+class PhysicalTest < ApplicationRecord
+end
