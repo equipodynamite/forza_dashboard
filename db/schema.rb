@@ -23,10 +23,8 @@ ActiveRecord::Schema.define(version: 2019_02_18_180427) do
   create_table "memberships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_date"
     t.integer "duration"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "objectives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,8 +77,10 @@ ActiveRecord::Schema.define(version: 2019_02_18_180427) do
     t.integer "status"
     t.string "password"
     t.integer "program"
+    t.bigint "membership_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_users_on_membership_id"
   end
 
 end

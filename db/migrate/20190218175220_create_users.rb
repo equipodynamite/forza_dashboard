@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password
       t.integer :program
 
+      t.references :membership
       t.timestamps
     end
   end
