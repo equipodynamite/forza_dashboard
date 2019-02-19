@@ -1,6 +1,6 @@
 class PhysicalTest < ApplicationRecord
-  belongs_to: user
-  has_many: tests
+  belongs_to :user
+  has_many :tests
 
   enum suggested_program: {
     UBP: 1,
