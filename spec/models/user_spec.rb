@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
   	it { should belong_to(:membership) }
-
   	it { should have_many(:payments) }
   	it { should have_many(:objectives) }
   	it { should have_many(:attendances) }
