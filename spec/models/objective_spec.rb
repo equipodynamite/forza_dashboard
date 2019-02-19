@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Objective, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { Objective.new }
+  it 'is valid with valid attributes' do
+    subject.date = Datetime.now
+    subject.user_id = 30
+    subject.text = ""
+    expect(subject).to be_valid
+  end
 end
