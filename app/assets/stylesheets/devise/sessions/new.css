@@ -1,0 +1,24 @@
+#sign-in-container {
+	margin: 0px;
+	color: white;
+	background: black;
+	min-height: 100%;
+	text-align: center;
+}
+
+#forza-logo {
+	width: 50%;
+}
+
+#inner-sign-in-container {
+	text-align: left;
+	margin-bottom: 30px;
+}
+
+#sign-in-form-element {
+	margin-bottom: 25px;
+}
+
+#sign-in-btn {
+	width: 100%;
+}
