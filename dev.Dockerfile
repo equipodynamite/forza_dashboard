@@ -1,5 +1,7 @@
 FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y nodejs mariadb-server vim
+RUN apt-get update -qq && apt-get install -y mariadb-server vim
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs
 RUN mkdir /app
 WORKDIR /app
 
