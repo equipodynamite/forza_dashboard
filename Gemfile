@@ -17,6 +17,10 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'chart-js-rails'
+gem 'chartkick'
+gem 'groupdate'
+
 
 group :development, :test do
   gem "pry"

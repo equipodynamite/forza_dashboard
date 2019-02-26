@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag("/attendances", method: "get") do %>
+  <div class="row">
+    <h1>Asistencias</h1>
+    <h1>
+      <%= select_tag(:time_period, options_for_select(@select_options.map{ |h| [h.first.to_s]}, selected: @time_period), :onchange => "this.form.submit()")%>
+    </h1>
+  </div>
+<% end %>
+
+<%= line_chart @attendances %>
