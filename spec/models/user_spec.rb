@@ -17,5 +17,6 @@ RSpec.describe User, type: :model do
   	it { should have_many(:objectives) }
   	it { should have_many(:attendances) }
   	it { should have_many(:physical_tests) }
+    it { should have_and_belong_to_many(:roles) }
   end
 end
