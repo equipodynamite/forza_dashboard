@@ -5,5 +5,4 @@ class Membership < ApplicationRecord
     Monthly: 1,
     Yearly: 2
   }
-
 end
