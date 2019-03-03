@@ -4,18 +4,31 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @select_options = {
-      semanal: 7,
-      bisemanal: 14,
-      mensual: 30,
-      semestral: 180,
-      anual: 360,
-    }
-    @time_period = params[:time_period] || :semanal
+    # @select_options = {
+    #   semana: :day_of_week,
+    #   mes: :day_of_month,
+    #   año: :month_of_year
+    # }
+    # @time_period = params[:time_period] || :semana
+
+    @start_date = params[:start_date]
+    if @start_date.nil?
+      @start_date = Time.now.beginning_of_week
+    else
+      @start_date = Time.strptime(@start_date, "%m/%d/%Y")
+    end
+
+    @end_date = params[:end_date]
+    if @end_date.nil?
+      @end_date = Time.now.end_of_week
+    else
+      @end_date = Time.strptime(@end_date, "%m/%d/%Y")
+    end
 
     @attendances = Attendance.all
-    @attendances = @attendances.group_by_period(:day_of_week, :date, range: @select_options[@time_period.to_sym].days.ago..Time.now, format: "%a").count
-
+    @attendances = @attendances.group_by_period(:day_of_week, :date, range: @start_date..@end_date, format: "%a").count
+    puts @attendances
+    @attendances_count = @attendances.sum{ |k, v| v }
   end
 
 

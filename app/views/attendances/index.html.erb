@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag("/attendances", method: "get") do %>
-  <div class="row">
-    <h1>Asistencias</h1>
-    <h1>
-      <%= select_tag(:time_period, options_for_select(@select_options.map{ |h| [h.first.to_s]}, selected: @time_period), :onchange => "this.form.submit()")%>
-    </h1>
-  </div>
+  <h1>Asistencias</h1>
+
+  <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker' ) %>
+  <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
+  <%= submit_tag 'Buscar' %>
 <% end %>
+<br>
+<h4> <%= "Has ido un total de #{@attendances_count} veces." %> </h4>
 
 <%= line_chart @attendances %>
