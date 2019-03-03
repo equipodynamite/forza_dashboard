@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 2019_03_02_011939) do
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "phone_number"
-    t.integer "type"
     t.integer "status"
     t.integer "program"
     t.bigint "membership_id"
