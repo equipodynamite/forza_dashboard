@@ -25,7 +25,7 @@ class AttendancesController < ApplicationController
       @end_date = Time.strptime(@end_date, "%m/%d/%Y")
     end
 
-    @attendances = Attendance.all
+    @attendances = current_user.attendances
     @attendances = @attendances.group_by_period(:day_of_week, :date, range: @start_date..@end_date, format: "%a").count
     puts @attendances
     @attendances_count = @attendances.sum{ |k, v| v }
