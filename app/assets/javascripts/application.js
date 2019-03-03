@@ -20,3 +20,8 @@
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
+//= require bootstrap-datepicker
+
+$('.datepicker').datepicker(
+  format: 'dd/mm/yyyy'
+);
