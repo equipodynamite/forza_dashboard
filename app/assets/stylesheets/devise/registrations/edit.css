@@ -3,15 +3,20 @@
 }
 
 #edit-user-container {
-	padding-top: 45px;
 	margin: 0px;
 	color: white;
-	background-color: #13191E;
 	min-height: 100%;
+	padding-top: 45px;
+	padding-bottom: 45px;
+	background-color: #13191E;
 }
 
 #edit-user-container #avatar {
 	width: 80%;
+}
+
+#edit-user-container #form-container {
+	padding-top: 30px;
 }
 
 #edit-user-container #form-container .edit-form-btn {
