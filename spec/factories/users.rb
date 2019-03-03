@@ -4,7 +4,6 @@ FactoryBot.define do
   	username 			{ FFaker::Internet.user_name }
   	password 			{ FFaker::Internet.password }
   	phone_number	{ FFaker::PhoneNumber.short_phone_number }
-  	type 					{ 1 }
   	status 				{ 2 }
   	program 			{ 3 }
   	membership_id { 4 }
