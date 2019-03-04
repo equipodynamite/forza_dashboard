@@ -1,0 +1,24 @@
+.align-self-center {
+	text-align: center;
+}
+
+.edit-user-container {
+	background-color: #13191E;
+	color: white;
+	margin: 0px;
+	min-height: 100%;
+	padding-bottom: 45px;
+	padding-top: 45px;
+}
+
+.edit-user-container .avatar {
+	width: 80%;
+}
+
+.edit-user-container .form-container {
+	padding-top: 30px;
+}
+
+.edit-user-container .form-container .edit-form-btn {
+	width: 100%;
+}
