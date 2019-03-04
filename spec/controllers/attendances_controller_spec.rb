@@ -15,7 +15,8 @@ RSpec.describe AttendancesController do
      FactoryBot.create(:attendance, user_id: @user.id, date: 3.days.ago)
      FactoryBot.create(:attendance, user_id: @user.id, date: 5.days.ago)
      FactoryBot.create(:attendance, user_id: @user.id, date: 9.days.ago)
-     get :index
+     get :index, { params: {start_date: 6.days.ago.strftime('%m/%d/%Y'), end_date: Time.now.strftime('%m/%d/%Y')}}
+     expect(Attendance.all.count).to eq(3)
      expect(assigns(:attendances_count)).to eq(2)
    end
  end
