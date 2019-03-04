@@ -24,6 +24,7 @@ gem 'bootstrap-datepicker-rails'
 
 
 group :development, :test do
+  gem "rails-erd"
   gem "pry"
   gem "factory_bot_rails"
   gem "rspec-rails", "~> 3.8"
