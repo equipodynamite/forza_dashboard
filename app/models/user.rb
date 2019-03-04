@@ -4,10 +4,11 @@ class User < ApplicationRecord
   has_many :payments
   has_many :physical_tests
   belongs_to :membership
+  has_and_belongs_to_many :roles, join_table: :users_roles
   # Include default devise modules. Others available are:
   # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable
-  validates :email, :username, :password, presence: true
+  validates :email, :username, presence: true
 
   before_validation :assign_membership, on: :create
 
