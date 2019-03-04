@@ -1,0 +1,17 @@
+<h1>Asistencias</h1>
+
+<%= form_tag("/attendances", method: "get") do %>
+  <div class="field">
+    <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker' ) %>
+    <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
+    <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+
+  </div>
+
+<% end %>
+
+<br>
+
+<h4> <%= "Has ido un total de #{@attendances_count} veces." %> </h4>
+
+<%= line_chart @attendances %>

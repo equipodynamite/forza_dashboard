@@ -17,6 +17,11 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'chart-js-rails'
+gem 'chartkick'
+gem 'groupdate'
+gem 'bootstrap-datepicker-rails'
+
 
 group :development, :test do
   gem "pry"
@@ -43,6 +48,7 @@ end
 
 group :test do
   gem "shoulda-matchers"
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
