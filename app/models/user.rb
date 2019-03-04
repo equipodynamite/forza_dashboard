@@ -10,6 +10,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   validates :email, :username, presence: true
 
+  before_validation :assign_membership, on: :create
+
   attr_accessor :login
 
   enum program: {
@@ -20,11 +22,18 @@ class User < ApplicationRecord
       PRS: 5
   }
 
+  private
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     where(conditions.to_h).
     where(['lower(username) = :value or lower(email) = :value', { value: login.downcase }]).
     first
+  end
+
+  def assign_membership
+    new_membership = Membership.create(start_date: DateTime.now, duration: 1)
+    self.membership_id = new_membership.id
   end
 end
