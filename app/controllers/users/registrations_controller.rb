@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_user!
+  def new
+    super
+  end
 
   def update
     super do |resource|
