@@ -6,17 +6,7 @@
       <div class='col col-md-6 col-sm-10'>
 
         <div id='form-container'>
-          <% if flash[:alert] %>
-            <div class='alert alert-warning alert-dismissible sign-in-form-element' role='alert'>
-              <strong>
-                Usuario y/o contraseña inválida
-              </strong>
-              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-              </button>
-            </div>
-          <% end %>
-
+          <%= devise_error_messages! %>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <div class="form-group sign-in-form-element">
               <%= f.text_field :username, autofocus: true, placeholder: "Nombre de Usuario", class: 'form-control' %>
@@ -31,6 +21,10 @@
               <%= f.password_field :password_confirmation, placeholder: 'Confirmar contraseña' , class: 'form-control' %>
             </div>
             <%= f.submit 'Registrar', class: 'btn btn-success sign-in-btn' %>
+ 
+           <div class="sign-in-links">
+              <span class="not-registered-link">Ya estas registrado? <%= link_to "Inicia sesión", new_user_session_path%> </span>
+            </div>
           <% end %>
         </div>
 
