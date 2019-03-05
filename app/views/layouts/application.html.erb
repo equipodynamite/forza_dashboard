@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <% if current_user.has_role? :admin %>
+        <%= render partial: 'layouts/admin_navbar' %>
+      <% elsif current_user.has_role? :member %>
+        <%= render partial: 'layouts/member_navbar' %>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
