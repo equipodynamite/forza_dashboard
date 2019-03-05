@@ -1,0 +1,21 @@
+example_id                                               | status | run_time        |
+-------------------------------------------------------- | ------ | --------------- |
+./spec/controllers/attendances_controller_spec.rb[1:1:1] | passed | 0.05579 seconds |
+./spec/controllers/attendances_controller_spec.rb[1:1:2] | passed | 0.22065 seconds |
+./spec/models/attendance_spec.rb[1:1]                    | passed | 0.00719 seconds |
+./spec/models/membership_spec.rb[1:1]                    | passed | 0.00702 seconds |
+./spec/models/objective_spec.rb[1:1]                     | passed | 0.01566 seconds |
+./spec/models/payment_spec.rb[1:1]                       | passed | 0.02407 seconds |
+./spec/models/physical_test_spec.rb[1:2:1]               | passed | 0.05848 seconds |
+./spec/models/physical_test_spec.rb[1:2:2]               | passed | 0.00833 seconds |
+./spec/models/role_spec.rb[1:1:1]                        | passed | 0.01467 seconds |
+./spec/models/role_spec.rb[1:2:1]                        | passed | 0.0116 seconds  |
+./spec/models/test_spec.rb[1:1]                          | passed | 0.02142 seconds |
+./spec/models/user_spec.rb[1:1:1]                        | passed | 0.04646 seconds |
+./spec/models/user_spec.rb[1:1:2]                        | passed | 0.03409 seconds |
+./spec/models/user_spec.rb[1:1:3]                        | passed | 0.02259 seconds |
+./spec/models/user_spec.rb[1:2:1]                        | passed | 0.01025 seconds |
+./spec/models/user_spec.rb[1:2:2]                        | passed | 0.01606 seconds |
+./spec/models/user_spec.rb[1:2:3]                        | passed | 0.00828 seconds |
+./spec/models/user_spec.rb[1:2:4]                        | passed | 0.01018 seconds |
+./spec/models/user_spec.rb[1:2:5]                        | passed | 0.01459 seconds |
