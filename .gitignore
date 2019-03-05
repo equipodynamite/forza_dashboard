@@ -17,6 +17,8 @@
 !/tmp/.keep
 .bash_history
 
+# Ignore specs output
+specs/examples.txt
 
 # Ignore uploaded files in development
 /storage/*
