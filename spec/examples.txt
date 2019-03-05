@@ -1,5 +1,0 @@
-example_id                                                  | status | run_time        |
------------------------------------------------------------ | ------ | --------------- |
-./spec/controllers/attendances_controller_spec.rb[1:1:1]    | passed | 0.3314 seconds  |
-./spec/controllers/attendances_controller_spec.rb[1:1:2]    | passed | 0.10311 seconds |
-./spec/controllers/users/registrations_controller.rb[1:1:1] | passed | 0.58691 seconds |
