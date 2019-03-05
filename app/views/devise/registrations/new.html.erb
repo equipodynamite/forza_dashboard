@@ -1,34 +1,43 @@
-<h2>Sign up</h2>
+<div class='row justify-content-sm-center' id='sign-in-container'>
+  <div class='col col-md-7 col-sm-10'>
+    <%= image_tag 'forza_logo', id: 'forza-logo' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class='row justify-content-sm-center' id='inner-sign-in-container'>
+      <div class='col col-md-6 col-sm-10'>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+        <div id='form-container'>
+          <% if flash[:alert] %>
+            <div class='alert alert-warning alert-dismissible sign-in-form-element' role='alert'>
+              <strong>
+                Usuario y/o contraseña inválida
+              </strong>
+              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
+            </div>
+          <% end %>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="form-group sign-in-form-element">
+              <%= f.text_field :username, autofocus: true, placeholder: "Nombre de Usuario", class: 'form-control' %>
+            </div>
+            <div class="form-group sign-in-form-element">
+              <%= f.email_field :email, autofocus: true, placeholder: "Correo electrónico", class: 'form-control' %>
+            </div>
+            <div class='form-group sign-in-form-element'>
+              <%= f.password_field :password, placeholder: 'Contraseña' , class: 'form-control' %>
+            </div>
+            <div class='form-group sign-in-form-element'>
+              <%= f.password_field :password_confirmation, placeholder: 'Confirmar contraseña' , class: 'form-control' %>
+            </div>
+            <%= f.submit 'Registrar', class: 'btn btn-success sign-in-btn' %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :membership_id %><br />
-    <%= f.text_field :membership_id, autocomplete: "membership_id" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
