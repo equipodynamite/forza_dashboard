@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
+  
   def update
     super do |resource|
       if params[:user][:password].blank?

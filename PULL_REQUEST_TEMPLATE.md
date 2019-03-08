@@ -5,6 +5,6 @@
 #### Merge Checklist:
 
 - [ ] The branch is up-to-date (i.e. rebased) with the base branch
-- [ ] All tests are passing - see ["Running tests"](../#running-tests)
+- [ ] All tests are passing - see ["Running specs"](../README.md#running-tests)
 - [ ] No code style issues
 
