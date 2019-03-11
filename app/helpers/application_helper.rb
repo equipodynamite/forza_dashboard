@@ -1,5 +1,10 @@
 module ApplicationHelper
-    def render_navbar
-        render "layouts/navbar" if user_signed_in?
+    def full_title(page_title = '')
+        base_title = "Forza Gravity Gym"
+        if page_title.empty?
+            base_title
+        else
+            "#{page_title} | #{base_title}"
+        end
     end
 end
