@@ -16,3 +16,34 @@
 <h4> <%= "Has ido un total de #{@attendances_count} veces." %> </h4>
 
 <%= line_chart @attendances %>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Atleta</th>
+    </tr>
+  </thead>
+
+ <% @all_attendances.each do |attendance| %>
+  <tr>
+    <td><%= attendance.date.strftime('%m/%d/%Y') %></td>
+    <td><%= attendance.user.username %></td>
+  </tr>
+<% end %>
+ </table>
+
+<h3> Asistencias por mes </h3>
+ <%= line_chart @monthly_attendances %>
+
+ <h3> Asistencias por semana </h3>
+ <%= line_chart @weekly_attendances %>
+
+ <h3> Asistencias por dia de la semana </h3>
+ <%= line_chart @day_of_week_attendances %>
+
+ <h3> Asistencias por semana </h3>
+ <%= @avg_attendances.inspect %>
+ <%= pie_chart @avg_attendances %>

@@ -1,0 +1,10 @@
+<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+<h1>Asistencias</h1>
+
+<%= form_for @attendance do |f| %>
+    <%= f.text_field(:user_id) %>
+    <%= f.text_field(:date, value:Time.now.strftime("%m/%d/%y")) %>
+    <%= f.submit%>
+<% end %>
+
+<br>
