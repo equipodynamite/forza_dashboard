@@ -8,29 +8,27 @@ class AttendancesController < ApplicationController
     @end_date = params[:end_date]
     @end_date = format_time(@end_date, Time.now.end_of_week)
 
-    @attendances = current_user.attendances.group_by_period(
-      :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
+    # if current_user.has_role? :member
+      @attendances = current_user.attendances.group_by_period(
+        :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
 
-    @attendances_count = @attendances.sum{ |k, v| v }
+      @attendances_count = @attendances.sum{ |k, v| v }
+    #else
+      @all_attendances = Attendance.all
 
-    # admin stuff
-    @all_attendances = Attendance.all
+      @monthly_attendances = @all_attendances.group_by_period(
+        :month, :date, range: @start_date..@end_date
+      ).count
 
-    @monthly_attendances = @all_attendances.group_by_period(
-      :month, :date, range: @start_date..@end_date
-    ).count
+      @weekly_attendances = @all_attendances.group_by_period(
+        :month, :date, range: 2.years.ago..Time.now
+      ).count
 
-    @weekly_attendances = @all_attendances.group_by_period(
-      :month, :date, range: 2.years.ago..Time.now
-    ).count
+      @day_of_week_attendances = @all_attendances.group_by_period(
+        :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
 
-    @day_of_week_attendances = @all_attendances.group_by_period(
-      :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
-
-    @avg_attendances = average_attendances_by_user
-
-
-
+      @avg_attendances = average_attendances_by_user
+  #  end
 
   end
 
@@ -39,10 +37,12 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @attendance = Attendance.new(attendance_params)
+    new_params =  attendance_params.clone
+    new_params[:date] = format_time(new_params[:date], Time.now)
+    @attendance = Attendance.new(new_params)
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to attendances_path, notice: 'Attendance was successfully created.' }
+        format.html {redirect_to request.referrer, notice: 'Attendance was successfully created.' }
         format.json { render :show, status: :created, location: @attendance }
       else
         format.html { render :new }
