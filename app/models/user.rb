@@ -6,8 +6,6 @@ class User < ApplicationRecord
   has_many :physical_tests
   has_and_belongs_to_many :roles, join_table: :users_roles
   belongs_to :membership, optional: true
-  # Include default devise modules. Others available are:
-  # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   validates :email, :username, presence: true
 
