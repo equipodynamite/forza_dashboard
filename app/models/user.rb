@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_many :attendances
   has_many :objectives
   has_many :payments
@@ -11,6 +12,8 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
 
   before_validation :assign_membership, on: :create
+
+  after_create :assign_default_role
 
   attr_accessor :login
 
@@ -35,5 +38,9 @@ class User < ApplicationRecord
   def assign_membership
     new_membership = Membership.create(start_date: DateTime.now, duration: 1)
     self.membership_id = new_membership.id
+  end
+
+  def assign_default_role
+    self.add_role :member if self.roles.blank?
   end
 end
