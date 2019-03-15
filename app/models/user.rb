@@ -9,8 +9,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   validates :email, :username, presence: true
 
-  before_validation :assign_membership, on: :create
-
   after_create :assign_default_role
 
   attr_accessor :login
@@ -31,11 +29,6 @@ class User < ApplicationRecord
     where(conditions.to_h).
     where(['lower(username) = :value or lower(email) = :value', { value: login.downcase }]).
     first
-  end
-
-  def assign_membership
-    new_membership = Membership.create(start_date: DateTime.now, duration: 1)
-    self.membership_id = new_membership.id
   end
 
   def assign_default_role
