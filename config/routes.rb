@@ -1,19 +1,33 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'dashboard' => "dashboard#index"
-    get 'dashboard/attendance'
-    get 'dashboard/payments'
-  end
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-
   devise_scope :user do
     authenticated :user do
-      root to: "users/dashboard#index", as: :authenticated_root
+      root to: 'passthrough#index', as: :authenticated_root
     end
 
     unauthenticated :user do
-      root to: "devise/sessions#new", as: :unauthenticated_root
+      root to: 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+ 
+  # Dashboard Passthrough routes (redirect to appropriate namespace)
+  get 'dashboard' => 'passthrough#index'
+  get 'dashboard/attendance' => 'passthrough#attendance'
+  get 'dashboard/payments' => 'passthrough#payments'
+
+  # Members dashboard routes
+  namespace :members do
+    get 'dashboard' => 'dashboard#index'
+    get 'dashboard/attendance' => 'dashboard#attendance'
+    get 'dashboard/payments' => 'dashboard#payments'
+  end
+
+  # Admin dashboard routes
+  namespace :admin do
+    get 'dashboard' => 'dashboard#index'
+    get 'dashboard/attendance' => 'dashboard#attendance'
+    get 'dashboard/payments' => 'dashboard#payments'
+  end
+
   resources :attendances, :payments, only: [:index]
 end

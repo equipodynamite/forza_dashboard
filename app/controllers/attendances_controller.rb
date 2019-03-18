@@ -50,13 +50,6 @@ class AttendancesController < ApplicationController
   end
 
   private
-    def format_time(time, default_value)
-      if time.nil?
-        time = default_value
-      else
-        time = Time.strptime(time, "%m/%d/%Y")
-      end
-    end
 
     def set_attendance
       @attendance = Attendance.find(params[:id])

@@ -2,28 +2,7 @@
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-          <%= link_to users_dashboard_path, :class => "nav-link active" do %>
-            <span><i class="fe fe-bar-chart"></i></span>
-              Dashboard
-            <% end %>
-          </li>
-          
-          <li class="nav-item">
-            <%= link_to users_dashboard_attendance_path, :class =>"nav-link" do %>
-                <span><i class="fe fe-calendar"></i></span>
-                Asistencias
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to users_dashboard_payments_path, :class =>"nav-link" do %>
-                <span><i class="fe fe-money"></i></span>
-                Pagos
-            <% end %>
-          </li>
-        </ul>
-
+        <%= render "layouts/sidebar_links"%>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           Configuración
         </h6>
