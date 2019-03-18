@@ -37,3 +37,6 @@ specs/examples.txt
 .env
 dev.env
 test.env
+
+# Ignore local files
+.local/
