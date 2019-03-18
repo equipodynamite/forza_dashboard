@@ -1,0 +1,20 @@
+<%= provide(:title, "Asistencias") %>
+<h1>Asistencias</h1>
+
+<%= form_tag("attendance", method: "get") do %>
+  <div class="field">
+    <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker' ) %>
+    <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker') %>
+    <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+  </div>
+
+<% end %>
+
+<br>
+
+<h4> <%= "Has ido un total de #{@filtered_attendances_count} veces entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h4>
+
+<%= line_chart @filtered_attendances %>
+<hr>
+
+<%= render "members/attendances/attendance_table" %>

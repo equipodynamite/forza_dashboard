@@ -7,15 +7,15 @@ class Admin::DashboardController < DashboardController
   
     def attendance
       @start_date = params[:start_date]
-      @start_date = TimeFormat.american_date(@start_date, Time.now.beginning_of_week)
+      @start_date = TimeFormat.from_american_date(@start_date, Time.now.beginning_of_week)
   
       @end_date = params[:end_date]
-      @end_date = TimeFormat.american_date(@end_date, Time.now.end_of_week)
-  
-      @attendances = current_user.attendances.group_by_period(
+      @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_week)
+      @all_attendances = Attendance.all
+      @filtered_attendances = @all_attendances.group_by_period(
         :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
   
-      @attendances_count = @attendances.sum{ |k, v| v }
+      @filtered_attendances_count = @filtered_attendances.sum{ |k, v| v }
     end
   
     def payments
