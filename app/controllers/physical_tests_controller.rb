@@ -1,4 +1,6 @@
 class PhysicalTestsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @physical_test = PhysicalTest.new
   end
