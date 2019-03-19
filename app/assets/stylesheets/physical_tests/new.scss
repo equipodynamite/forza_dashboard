@@ -1,0 +1,46 @@
+.physical-test-header {
+	height: 15%;
+	padding: 2% 0;
+	text-align: center;
+}
+
+.physical-test-container {
+	background: #000;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: .875rem;
+	min-height: 100%;
+	padding-top: 56px;
+	padding-bottom: 30px;
+}
+
+.pull-ups-form .form-title {
+	color: rgb(241, 143, 1);
+}
+
+.push-ups-form .form-title {
+	color: rgb(147, 214, 59);
+}
+
+.squats-form .form-title {
+	color: rgb(0, 119, 181);
+}
+
+.crunches-form .form-title {
+	color: rgb(184, 51, 106);
+}
+
+.general-form .form-title {
+	color: rgb(241, 201, 1);
+}
+
+.form-title {
+	text-align: center;
+}
+
+.form-content {
+	text-align: right;
+}
+
+.btn-full-width {
+	width: 100%;
+}
