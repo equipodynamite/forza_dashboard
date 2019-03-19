@@ -6,7 +6,7 @@ volumes:
 services:
   mariadb:
     image: mariadb
-    volumes: 
+    volumes:
       - maria_data:/var/lib/mysql
     restart: always
     ports:
@@ -30,24 +30,22 @@ services:
     command: rspec
     environment: &app_environment
       PATH: /app/bin:/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      DATABASE_URL: ${TEST_MARIADB_URL:-}
+      DATABASE_URL: ${TEST_MARIADB_URL:-""}
       RAILS_ENV: ${TEST_RAILS_ENV}
       RACK_ENV: ${TEST_RACK_ENV}
       RAILS_LOG_TO_STDOUT: "true"
       MAILER_HOST: localhost
       MAILER_PORT: 3000
-    
+
   web:
     <<: *app
     command: rails server -p 3000 -b 0.0.0.0
-    ports: 
+    ports:
       - ${FORZA_DASHBOARD_WEB_PORT:-3000}:3000
     environment:
       <<: *app_environment
-      DATABASE_URL: ${DEV_MARIADB_URL:-}
+      DATABASE_URL: ${DEV_MARIADB_URL:-""}
       RAILS_ENV: ${DEV_RAILS_ENV}
       RACK_ENV: ${DEV_RACK_ENV}
     depends_on:
       - mariadb
-
-
