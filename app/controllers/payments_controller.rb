@@ -1,6 +1,4 @@
 class PaymentsController < ApplicationController
-  before_action :set_attendance, only: [:show, :edit, :update, :destroy]
-
   def index
     @payments = current_user.payments.order('date DESC')
 
@@ -11,19 +9,4 @@ class PaymentsController < ApplicationController
         @next_payment ='Tu fecha de corte es en ' +  @most_recent_date.to_s
     end
   end
-
-  def create
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
-  end
-
-  private
-
 end
