@@ -6,7 +6,6 @@ class PaymentsController < ApplicationController
         @next_payment = "No tienes fecha de corte pendiente"
     else
         @most_recent_date = @payments.first.date.to_date + 1.month
-        @next_payment ='Tu fecha de corte es en ' +  @most_recent_date.to_s
     end
   end
 end
