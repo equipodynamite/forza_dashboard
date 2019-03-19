@@ -19,7 +19,7 @@ class Admin::DashboardController < DashboardController
     end
   
     def payments
-      @payment_log = current_user.payments
+      @all_payments = Payment.all.order('date DESC')
     end
 
     private

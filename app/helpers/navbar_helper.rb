@@ -1,4 +1,8 @@
 module NavbarHelper
+    def render_navbar
+        render "layouts/navbar" if user_signed_in?
+    end
+
     def admin_badge
         (current_user.has_role? :admin ) ? admin_badge_html : ''
     end

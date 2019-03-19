@@ -19,13 +19,18 @@ class Members::DashboardController < DashboardController
     end
   
     def payments
-      @payment_log = current_user.payments
+      @all_payments = current_user.payments.order('date DESC')
+      @next_payment_due = next_due_date(@all_payments)
     end
 
     private
 
     def is_member?
       current_user.has_role? :member
+    end
+
+    def next_due_date(payments)
+      (!payments.empty?) ? payments.first.date.to_date + 1.month : nil
     end
   end
   

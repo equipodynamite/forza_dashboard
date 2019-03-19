@@ -13,7 +13,6 @@ class PassthroughController < ApplicationController
 
   private
 
-
   def redirect_to_role_dashboard!
     redirect_to :controller => resolve_target_controller,
                 :action => action_name
