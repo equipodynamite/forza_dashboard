@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       root to: "devise/sessions#new", as: :unauthenticated_root
     end
   end
-  resources :attendances, only: [:index]
+
+  resources :attendances, :payments, only: [:index]
   get  'physical_tests/new' => 'physical_tests#new'
   post 'physical_tests/new' => 'physical_tests#create'
 end
