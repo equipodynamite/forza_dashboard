@@ -1,0 +1,26 @@
+<div class='row justify-content-sm-center push-ups-form'>
+	<div class='col-sm-12 form-title'>
+		<h5>Lagartijas (Push ups)</h5>
+	</div>
+	<div class='col-sm-10 form-content'>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.number_field :push_ups, placeholder: 'Repeticiones', class: 'col-sm-8 form-control', required: true %>
+		</div>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.select :push_ups_form, push_ups_form_options_for_select, { include_blank: 'Forma' }, class: 'col-sm-8 form-control', required: true %>
+		</div>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.select :push_ups_rom, push_ups_rom_options_for_select, { include_blank: 'ROM' }, class: 'col-sm-8 form-control', required: true %>
+		</div>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.select :push_ups_core, push_ups_core_options_for_select, { include_blank: 'Core' }, class: 'col-sm-8 form-control', required: true %>
+		</div>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.select :push_ups_rhythm, push_ups_rhythm_options_for_select, { include_blank: 'Ritmo' }, class: 'col-sm-8 form-control', required: true %>
+		</div>
+		<div class='form-group row justify-content-sm-center'>
+			<%= f.text_area :push_ups_notes, placeholder: 'Notas', class: 'col-sm-8 form-control' %>
+		</div>
+	</div>
+</div>
+<br/>

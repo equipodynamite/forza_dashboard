@@ -1,0 +1,11 @@
+<div class='physical-test-container'>
+	<header class='physical-test-header'>
+		<h2>Prueba Física</h2>
+	</header>
+
+	<div class='container-fluid'>
+		<%= form_for @physical_test, url: { action: 'create' } do |f| %>
+			<%= render partial: 'physical_test_form', locals: {f: f} %>
+		<% end %>
+	</div>
+</div>
