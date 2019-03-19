@@ -3,6 +3,7 @@
 @import "bootstrap-datepicker";
 @import "devise/registrations/edit";
 @import "devise/sessions/new";
+@import "physical_tests/new";
 
 html {
 	margin: 0px;
@@ -15,8 +16,4 @@ html {
 body {
 	width: 100%;
 	height: 100%;
-}
-
-.main-container {
-	padding-top: 56px;
 }
