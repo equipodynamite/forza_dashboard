@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     end
   end
   resources :attendances, only: [:index]
+  get  'physical_tests/new' => 'physical_tests#new'
+  post 'physical_tests/new' => 'physical_tests#create'
 end
