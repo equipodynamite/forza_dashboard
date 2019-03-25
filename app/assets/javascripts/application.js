@@ -21,6 +21,8 @@
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap-datepicker
+//= require jquery-ui
+//= require autocomplete-rails
 
 $('.datepicker').datepicker(
   format: 'dd/mm/yyyy'

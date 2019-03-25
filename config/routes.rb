@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     end
   end
   resources :attendances, only: [:index, :create, :new]
+  get 'attendances/autocomplete_user_username'
+
 end
