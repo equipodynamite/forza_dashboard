@@ -23,7 +23,7 @@ gem 'groupdate'
 gem 'bootstrap-datepicker-rails'
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
-
+gem 'feathericon-rails'
 
 
 group :development, :test do

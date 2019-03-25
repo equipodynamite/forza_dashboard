@@ -1,16 +1,15 @@
 class User < ApplicationRecord
+  rolify
   has_many :attendances
   has_many :objectives
   has_many :payments
   has_many :physical_tests
   has_and_belongs_to_many :roles, join_table: :users_roles
   belongs_to :membership, optional: true
-  # Include default devise modules. Others available are:
-  # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   validates :email, :username, presence: true
 
-  before_validation :assign_membership, on: :create
+  after_create :assign_default_role
 
   attr_accessor :login
 
@@ -32,8 +31,7 @@ class User < ApplicationRecord
     first
   end
 
-  def assign_membership
-    new_membership = Membership.create(start_date: DateTime.now, duration: 1)
-    self.membership_id = new_membership.id
+  def assign_default_role
+    self.add_role :member if self.roles.blank?
   end
 end

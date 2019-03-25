@@ -106,6 +106,8 @@ GEM
     factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
+    feathericon-rails (1.0.0)
+      rails (>= 4.0.0)
     ffaker (2.10.0)
     ffi (1.10.0)
     font-awesome-rails (4.7.0.4)
@@ -294,6 +296,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
+  feathericon-rails
   ffaker
   font-awesome-rails
   groupdate
