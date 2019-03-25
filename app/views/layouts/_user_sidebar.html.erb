@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <%= render "layouts/sidebar_links"%>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          Configuración
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <%= link_to edit_user_registration_path, :class => "nav-link" do %>
+              <span><i class="fe fe-user"></i></span>
+              Datos de Usuario
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
