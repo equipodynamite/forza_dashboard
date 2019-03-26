@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
- 
+
   # Dashboard Passthrough routes (redirect to appropriate namespace)
   get 'dashboard' => 'passthrough#index'
   get 'dashboard/attendance' => 'passthrough#attendance'
@@ -30,4 +31,6 @@ Rails.application.routes.draw do
   end
 
   resources :attendances, :payments, only: [:index]
+  get  'physical_tests/new' => 'physical_tests#new'
+  post 'physical_tests/new' => 'physical_tests#create'
 end
