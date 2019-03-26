@@ -1,4 +1,4 @@
-class PhysicalTestsController < ApplicationController
+class Admin::PhysicalTestsController < ApplicationController
   before_action :authenticate_user!
 
   def new
