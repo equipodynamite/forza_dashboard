@@ -1,139 +1,52 @@
 module PhysicalTestsHelper
 
-	def suggested_program_options_for_select
-		options_for_select = []
-		PhysicalTest.suggested_programs.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.suggested_program.#{pt}"), pt]
-		end
-		options_for_select
-	end
+  def options_for_select_of attribute
+    options = []
+    keys = keys_of attribute
+    keys.each do |pt|
+      options << [t("enums.physical_test.#{attribute}.#{pt}"), pt]
+    end
+    options
+  end
 
-	def pull_ups_form_options_for_select
-		options_for_select = []
-		PhysicalTest.pull_ups_forms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.pull_ups_form.#{pt}"), pt]
-		end
-		options_for_select
-	end
+  private
 
-	def pull_ups_rom_options_for_select
-		options_for_select = []
-		PhysicalTest.pull_ups_roms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.pull_ups_rom.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def pull_ups_core_options_for_select
-		options_for_select = []
-		PhysicalTest.pull_ups_cores.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.pull_ups_core.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def pull_ups_rhythm_options_for_select
-		options_for_select = []
-		PhysicalTest.pull_ups_rhythms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.pull_ups_rhythm.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def push_ups_form_options_for_select
-		options_for_select = []
-		PhysicalTest.push_ups_forms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.push_ups_form.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def push_ups_rom_options_for_select
-		options_for_select = []
-		PhysicalTest.push_ups_roms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.push_ups_rom.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def push_ups_core_options_for_select
-		options_for_select = []
-		PhysicalTest.push_ups_cores.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.push_ups_core.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def push_ups_rhythm_options_for_select
-		options_for_select = []
-		PhysicalTest.push_ups_rhythms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.push_ups_rhythm.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def squats_form_options_for_select
-		options_for_select = []
-		PhysicalTest.squats_forms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.squats_form.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def squats_rom_options_for_select
-		options_for_select = []
-		PhysicalTest.squats_roms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.squats_rom.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def squats_core_options_for_select
-		options_for_select = []
-		PhysicalTest.squats_cores.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.squats_core.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def squats_rhythm_options_for_select
-		options_for_select = []
-		PhysicalTest.squats_rhythms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.squats_rhythm.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def crunches_form_options_for_select
-		options_for_select = []
-		PhysicalTest.crunches_forms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.crunches_form.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def crunches_rom_options_for_select
-		options_for_select = []
-		PhysicalTest.crunches_roms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.crunches_rom.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def crunches_core_options_for_select
-		options_for_select = []
-		PhysicalTest.crunches_cores.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.crunches_core.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
-	def crunches_rhythm_options_for_select
-		options_for_select = []
-		PhysicalTest.crunches_rhythms.keys.each do |pt|
-			options_for_select << [t("enums.physical_test.crunches_rhythm.#{pt}"), pt]
-		end
-		options_for_select
-	end
-
+  def keys_of attribute
+    case attribute
+    when 'suggested_program'
+      PhysicalTest.suggested_programs.keys
+    when 'pull_ups_form'
+      PhysicalTest.pull_ups_forms.keys
+    when 'pull_ups_rom'
+      PhysicalTest.pull_ups_roms.keys
+    when 'pull_ups_core'
+      PhysicalTest.pull_ups_cores.keys
+    when 'pull_ups_rhythm'
+      PhysicalTest.pull_ups_rhythms.keys
+    when 'push_ups_form'
+      PhysicalTest.push_ups_forms.keys
+    when 'push_ups_rom'
+      PhysicalTest.push_ups_roms.keys
+    when 'push_ups_core'
+      PhysicalTest.push_ups_cores.keys
+    when 'push_ups_rhythm'
+      PhysicalTest.push_ups_rhythms.keys
+    when 'squats_form'
+      PhysicalTest.squats_forms.keys
+    when 'squats_rom'
+      PhysicalTest.squats_roms.keys
+    when 'squats_core'
+      PhysicalTest.squats_cores.keys
+    when 'squats_rhythm'
+      PhysicalTest.squats_rhythms.keys
+    when 'crunches_form'
+      PhysicalTest.crunches_forms.keys
+    when 'crunches_rom'
+      PhysicalTest.crunches_roms.keys
+    when 'crunches_core'
+      PhysicalTest.crunches_cores.keys
+    when 'crunches_rhythm'
+      PhysicalTest.crunches_rhythms.keys
+    end
+  end
 end
