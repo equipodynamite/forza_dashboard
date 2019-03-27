@@ -10,11 +10,11 @@
     </div>
     <br/>
 
-    <%= render partial: 'pull_ups_form', locals: {f: f} %>
-    <%= render partial: 'push_ups_form', locals: {f: f} %>
-    <%= render partial: 'squats_form', locals: {f: f} %>
-    <%= render partial: 'crunches_form', locals: {f: f} %>
-    <%= render partial: 'general_form', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/pull_ups', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/push_ups', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/squats', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/crunches', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/general', locals: {f: f} %>
 
     <div class='row justify-content-sm-center form-group'>
       <div class='col-sm-2'>

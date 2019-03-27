@@ -5,7 +5,7 @@
 
 	<div class='container-fluid'>
 		<%= form_for @physical_test, url: { action: 'create' } do |f| %>
-			<%= render partial: 'physical_test_form', locals: {f: f} %>
+			<%= render partial: '/admin/physical_tests/forms/physical_test', locals: {f: f} %>
 		<% end %>
 	</div>
 </div>
