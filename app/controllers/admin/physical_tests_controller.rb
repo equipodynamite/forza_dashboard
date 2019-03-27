@@ -1,5 +1,7 @@
 class Admin::PhysicalTestsController < ApplicationController
+  layout 'user_dashboard'
   before_action :authenticate_user!
+  before_action :verify_admin_role
 
   def new
     @physical_test = PhysicalTest.new
@@ -47,5 +49,9 @@ class Admin::PhysicalTestsController < ApplicationController
       :suggested_program,
       :general_notes
     )
+  end
+
+  def verify_admin_role
+    redirect_to authenticated_root_path if not current_user.has_role? :admin
   end
 end
