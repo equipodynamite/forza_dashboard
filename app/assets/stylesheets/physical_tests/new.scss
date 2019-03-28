@@ -4,9 +4,11 @@
 	text-align: center;
 }
 
+.form-col {
+	padding: 10px;
+}
+
 .physical-test-container {
-	background: #000;
-	color: #fff;
 	font-size: .875rem;
 	min-height: 100%;
 	padding-top: 56px;
@@ -14,23 +16,19 @@
 }
 
 .pull-ups-form .form-title {
-	color: rgb(241, 143, 1);
+	color: #F18F01;
 }
 
 .push-ups-form .form-title {
-	color: rgb(147, 214, 59);
+	color: #82BD34;
 }
 
 .squats-form .form-title {
-	color: rgb(0, 119, 181);
+	color: #0077B5;
 }
 
 .crunches-form .form-title {
-	color: rgb(184, 51, 106);
-}
-
-.general-form .form-title {
-	color: rgb(241, 201, 1);
+	color: #B8336A;
 }
 
 .form-title {
