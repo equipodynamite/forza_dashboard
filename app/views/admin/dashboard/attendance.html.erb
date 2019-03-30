@@ -1,11 +1,13 @@
 <%= provide(:title, "Asistencias") %>
 <h1>Asistencias</h1>
+<div class="container text-right">
+  <%= form_for Attendance.new do |f| %>
+      <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
+      <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
+      <%= f.submit 'Crear', class: "btn btn-primary"%>
+  <% end %>
 
-<%= form_for Attendance.new do |f| %>
-    <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
-    <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
-    <%= f.submit 'Crear', class: "btn btn-primary"%>
-<% end %>
+</div>
 
 <br>
 

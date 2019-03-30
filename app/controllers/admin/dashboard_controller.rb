@@ -40,6 +40,7 @@ class Admin::DashboardController < DashboardController
     def average_attendances_by_user
       average_attendances = Hash.new(0)
       range_weeks = ((@end_date - @start_date) / 1.week).round
+      return 0 if range_weeks.zero?
       User.all.each do |user|
         average_attendances[user.attendances.where(date:@start_date..@end_date).count / range_weeks] += 1
       end
