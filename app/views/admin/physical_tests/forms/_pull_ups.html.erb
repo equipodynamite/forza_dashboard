@@ -1,0 +1,28 @@
+<div class='row justify-content-sm-center pull-ups-form'>
+	<div class='col-sm-12 form-title'>
+		<h5>Dominadas (Pull ups)</h5>
+	</div>
+	<div class='col-sm-12 form-content'>
+		<div class='form-group row justify-content-sm-center'>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.number_field :pull_ups, autofocus: true, placeholder: 'Repeticiones', class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.select :pull_ups_form, options_for_select_of('pull_ups_form'), { include_blank: 'Forma' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-12 form-col'>
+				<%= f.select :pull_ups_rom, options_for_select_of('pull_ups_rom'), { include_blank: 'ROM' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :pull_ups_core, options_for_select_of('pull_ups_core'), { include_blank: 'Core' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :pull_ups_rhythm, options_for_select_of('pull_ups_rhythm'), { include_blank: 'Ritmo' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-sm-12 form-col'>
+				<%= f.text_area :pull_ups_notes, placeholder: 'Notas', class: 'form-control' %>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
