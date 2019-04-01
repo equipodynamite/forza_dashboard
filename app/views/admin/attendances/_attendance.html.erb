@@ -1,0 +1,7 @@
+<tr class="text-center">
+    <td><%= attendance.id %></td>
+    <td><%= attendance.user.username %></td>
+    <td><%= TimeFormat.to_mexican_date(attendance.date) %></td>
+    <td><%= TimeFormat.day_of_week_spanish(attendance.date) %></td>
+    <td><%= attendance.created_at.strftime("%I:%m %p")%>
+</tr>

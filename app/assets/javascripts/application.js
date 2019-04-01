@@ -14,14 +14,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap-datepicker
+//= require jquery-ui
+//= require autocomplete-rails
+//= require_tree .
 
-$('.datepicker').datepicker(
-  format: 'dd/mm/yyyy'
-);
+$('.datepicker').datepicker({format: 'dd/mm/yyyy'});

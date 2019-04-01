@@ -21,7 +21,6 @@ module DeviseHelper
 
     def build_messages_html(message_list)
         messages = message_list.join
-        puts(messages.inspect)
         html = <<-HTML
         <div class="alert alert-warning alert-dismissible sign-in-form-element" role="alert">
         <button type="button" class="close" data-dismiss="alert">
