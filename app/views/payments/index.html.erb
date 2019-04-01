@@ -1,6 +1,5 @@
 <h1>Pagos</h1>
 
-
 <%= form_tag("/payments", method: "get") do %>
   <div class="field">
     <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
@@ -40,14 +39,19 @@
   <% end %>
 </table>
 
-<br>
-<h3> Pagos por mes desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
-<%= line_chart @monthly_payments_all %>
-<br>
+<!-- Graficas que le sirven al administrador-->
+<% if @is_admin == true %>
 
-<br>
-<h3> Pagos por semana desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
-<%= line_chart @weekly_payments_all %>
-<br>
+  <br>
+  <h3> Pagos por mes desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
+  <%= line_chart @monthly_payments_all %>
+  <br>
+
+  <br>
+  <h3> Pagos por semana desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
+  <%= line_chart @weekly_payments_all %>
+  <br>
+  
+<% end %>
 
 <br>
