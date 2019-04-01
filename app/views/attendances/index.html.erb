@@ -1,18 +1,61 @@
-<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
-<h1>Asistencias</h1>
-
-<%= form_tag("/attendances", method: "get") do %>
-  <div class="field">
-    <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker' ) %>
-    <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
-    <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
-
+<div class="container-fluid">
+  <div class = "row">
+    <h1>Asistencias</h1>
   </div>
 
-<% end %>
+  <%= form_tag("/attendances", method: "get") do %>
+    <div class="field">
+      <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
+      <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker') %>
+      <%= submit_tag 'Buscar', class: "btn btn-primary"%>
+    </div>
+  <% end %>
 
-<br>
+  <br>
 
-<h4> <%= "Has ido un total de #{@attendances_count} veces." %> </h4>
+  <h4> <%= "Has ido un total de #{@attendances_count} veces." %> </h4>
 
-<%= line_chart @attendances %>
+  <%= line_chart @attendances %>
+
+  <br>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Fecha</th>
+        <th>Atleta</th>
+      </tr>
+    </thead>
+
+    <% @all_attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.date.strftime('%m/%d/%Y') %></td>
+        <td><%= attendance.user.username %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <h3> Asistencias por mes </h3>
+      <%= line_chart @monthly_attendances %>
+    </div>
+    <div class="col-md-6">
+      <h3> Asistencias por dia de la semana </h3>
+      <%= line_chart @day_of_week_attendances %>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <h3> Asistencias por semana </h3>
+    <%= line_chart @weekly_attendances %>
+  </div>
+
+  <br>
+
+  <div class="row">
+   <h3> Frecuencia promedio de visitas por semana </h3>
+   <%= pie_chart @avg_attendances %>
+  </div>
+</div>
