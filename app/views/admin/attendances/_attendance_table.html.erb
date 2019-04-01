@@ -21,28 +21,27 @@
     </div>
   </div>
 </div>
-<div class="row">
-   <div class="card col-md-6">
-     <h3> Asistencias por mes </h3>
+<br>
+<div class="card">
+   <div class="card-body">
+     <h5 class="card-title"> Asistencias por mes </h5>
      <%= line_chart @monthly_attendances %>
    </div>
-   <div class="card col-md-6">
-     <h3> Asistencias por dia de la semana </h3>
-     <%= line_chart @day_of_week_attendances %>
-   </div>
- </div>
-   <br>
-
-   <div class="card row">
-     <h3> Asistencias por semana </h3>
-     <%= line_chart @weekly_attendances %>
-   </div>
-
-   <br>
-
-   <div class="card row">
-    <h3> Frecuencia promedio de visitas por semana </h3>
-    <%= pie_chart @avg_attendances %>
-   </div>
-
 </div>
+   <br>
+
+   <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"> Asistencias por semana </h5>
+        <%= line_chart @weekly_attendances %>
+     </div>
+   </div>
+
+   <br>
+
+   <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"> Frecuencia promedio de visitas por semana </h5>
+      <%= pie_chart @avg_attendances %>
+     </div>
+  </div>
