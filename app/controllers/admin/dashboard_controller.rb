@@ -34,7 +34,27 @@ class Admin::DashboardController < DashboardController
     end
 
     def payments
+      @start_date = params[:start_date]
+      @start_date = TimeFormat.from_american_date(@start_date, Time.now.beginning_of_month)
+
+      @end_date = params[:end_date]
+      @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_month)
+
       @all_payments = Payment.all.order('date DESC')
+
+      @monthly_payments = @all_payments.group_by_period(
+          :month, :date, range: @start_date..@end_date
+        ).count
+
+      @monthly_payments_count = @monthly_payments.sum{ |k, v| v }
+
+      @weekly_payments_all = @all_payments.group_by_period(
+        :week, :date, range: Time.now.beginning_of_year..Time.now
+      ).count
+
+      @payments_graph = @all_payments.group_by_period(
+        :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
+
     end
 
     def average_attendances_by_user

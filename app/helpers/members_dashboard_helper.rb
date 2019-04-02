@@ -1,5 +1,5 @@
 module MembersDashboardHelper
-    def render_all_payments
+    def render_all_member_payments
         if @all_payments.empty?
             html_content = "<p class='text-muted text-center'>No hay pagos registrados</p>"
             return html_content.html_safe
