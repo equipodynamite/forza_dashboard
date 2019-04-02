@@ -1,3 +1,65 @@
 <%= provide(:title, "Pagos") %>
-<h1>Pagos</h1>
+<br>
+<br>
+<br>
+<br>
+
+<div class="card">
+  <br>
+
+  <h1>Pagos</h1>
+
+  <%= form_tag("payments", method: "get") do %>
+    <div class="field">
+      <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker', readonly: true) %>
+      <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker', readonly: true) %>
+      <%= submit_tag 'Buscar', class: "btn btn-primary"%>
+    </div>
+  <% end %>
+
+  <br>
+
+  <h4> <%= "Se han registrado un total de #{@monthly_payments_count} pagos(s) entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h4>
+
+  <%= line_chart @monthly_payments %>
+  <br><br>
+</div>
+
+<br>
+
+<div class="card">
+  <br><br>
+  <h3>Nuevo pago</h3>
+
+  <%= provide(:title, "Pagos") %>
+
+  <div class="container text-left">
+    <%= form_for Payment.new do |f| %>
+        <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
+        <%= f.text_field(:amount, value: 800) %>
+        <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
+        <%= f.submit 'Crear', class: "btn btn-primary"%>
+    <% end %>
+  </div>
+  <br><br>
+</div>
+
+<br><br>
+
 <%= render "admin/payments/payment_logs" %>
+
+<br><br>
+
+<div class="card">
+  <br><br>
+
+  <h3> Pagos por mes desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
+  <%= line_chart @monthly_payments %>
+
+  <br><br>
+
+  <h3> Pagos por semana desde <%= Time.now.beginning_of_year.strftime('%m/%d/%Y')%> </h3>
+  <%= line_chart @weekly_payments_all %>
+
+  <br><br>
+</div>

@@ -32,5 +32,8 @@ Rails.application.routes.draw do
     post 'physical_tests/new'   => 'physical_tests#create'
   end
 
-  resources :attendances, :payments, only: [:index]
+  resources :payments, only: [:index, :create, :new]
+
+  resources :attendances, only: [:index, :create, :new]
+  get 'attendances/autocomplete_user_username'
 end
