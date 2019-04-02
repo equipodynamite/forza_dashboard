@@ -1,11 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
 
-
   def index
-
-    @is_admin = true
-    #@is_admin = current_user.has_role? :admin
 
     @start_date = params[:start_date]
     @start_date = format_time(@start_date, Time.now.beginning_of_month)
@@ -13,11 +9,11 @@ class PaymentsController < ApplicationController
     @end_date = params[:end_date]
     @end_date = format_time(@end_date, Time.now.end_of_month)
 
-    if @is_admin == true
+    #current_user.has_role? :admin
       @all_payments = Payment.all.order('date DESC')
-    else
+    #else
       @all_payments = current_user.payments.order('date DESC')
-    end
+    #end
 
     @montly_payments = @all_payments.group_by_period(
         :month, :date, range: @start_date..@end_date
@@ -36,7 +32,6 @@ class PaymentsController < ApplicationController
   end
 
   def new
-    @all_members = User.all
     @payment = Payment.new
   end
 
@@ -47,7 +42,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new(new_params)
     respond_to do |format|
       if @payment.save
-        format.html {redirect_to payments_path, notice: 'Payment was successfully created.' }
+        format.html {redirect_to request.referrer, notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }

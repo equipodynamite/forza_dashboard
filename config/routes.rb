@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'dashboard/payments' => 'dashboard#payments'
   end
 
-  resources :payments, only: [:index]
+  resources :payments, only: [:index, :create, :new]
 
   resources :attendances, only: [:index, :create, :new]
   get 'attendances/autocomplete_user_username'
