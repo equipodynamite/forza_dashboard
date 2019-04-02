@@ -1,0 +1,28 @@
+<div class='row justify-content-sm-center'>
+  <div class='col-lg-10 col-sm-10'>
+
+    <div class='row justify-content-sm-center pull-ups-form'>
+      <div class='col-sm-10 form-content'>
+        <div class='form-group row justify-content-sm-center'>
+          <%= f.select :user_id, User.all.pluck(:username, :id), { include_blank: 'Usuario' }, class: 'col-sm-8 form-control', required: true %>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <%= render partial: '/admin/physical_tests/forms/pull_ups', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/push_ups', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/squats', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/crunches', locals: {f: f} %>
+    <%= render partial: '/admin/physical_tests/forms/general', locals: {f: f} %>
+
+    <div class='row justify-content-sm-center form-group'>
+      <div class='col-sm-2'>
+        <%= f.submit 'Guardar', class: 'btn btn-success btn-full-width' %>
+      </div>
+      <div class='col-sm-2'>
+        <%= link_to 'Regresar', :back, class: 'btn btn-danger btn-full-width' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_15_204531) do
+ActiveRecord::Schema.define(version: 2019_03_16_000503) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date"
@@ -45,6 +45,31 @@ ActiveRecord::Schema.define(version: 2019_03_15_204531) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pull_ups"
+    t.integer "pull_ups_form"
+    t.integer "pull_ups_rom"
+    t.integer "pull_ups_core"
+    t.integer "pull_ups_rhythm"
+    t.text "pull_ups_notes"
+    t.integer "push_ups"
+    t.integer "push_ups_form"
+    t.integer "push_ups_rom"
+    t.integer "push_ups_core"
+    t.integer "push_ups_rhythm"
+    t.text "push_ups_notes"
+    t.integer "squats"
+    t.integer "squats_form"
+    t.integer "squats_rom"
+    t.integer "squats_core"
+    t.integer "squats_rhythm"
+    t.text "squats_notes"
+    t.integer "crunches"
+    t.integer "crunches_form"
+    t.integer "crunches_rom"
+    t.integer "crunches_core"
+    t.integer "crunches_rhythm"
+    t.text "crunches_notes"
+    t.text "general_notes"
     t.index ["user_id"], name: "index_physical_tests_on_user_id"
   end
 

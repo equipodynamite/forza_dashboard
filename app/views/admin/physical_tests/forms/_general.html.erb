@@ -1,0 +1,16 @@
+<div class='row justify-content-sm-center general-form'>
+  <div class='col-sm-12 form-title'>
+    <h5>Programa</h5>
+  </div>
+  <div class='col-sm-12 form-content'>
+    <div class='form-group row justify-content-sm-center'>
+      <div class='col-sm-12 form-col'>
+        <%= f.select :suggested_program, options_for_select_of('suggested_program'), { include_blank: 'Programa sugerido' }, class: 'form-control', required: true %>
+      </div>
+      <div class='col-sm-12 form-col'>
+        <%= f.text_area :general_notes, placeholder: 'Notas generales', class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>

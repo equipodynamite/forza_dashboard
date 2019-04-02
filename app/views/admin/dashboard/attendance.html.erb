@@ -1,29 +1,37 @@
 <%= provide(:title, "Asistencias") %>
-<h1>Asistencias</h1>
-<div class="container text-right">
-  <%= form_for Attendance.new do |f| %>
-      <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
-      <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
-      <%= f.submit 'Crear', class: "btn btn-primary"%>
-  <% end %>
-
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Registrar asistencia </h5>
+    <%= form_for Attendance.new do |f| %>
+        <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
+        <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
+        <%= f.submit 'Crear', class: "btn btn-primary"%>
+    <% end %>
+  </div>
 </div>
 
 <br>
-
-<%= form_tag("attendance", method: "get") do %>
-  <div class="field">
-    <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
-    <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
-    <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Fechas </h5>
+    <%= form_tag("attendance", method: "get") do %>
+      <div class="field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> <%= "Se han registrado un total de #{@attendances_count} asistencia(s) entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h5>
+    <%= line_chart @filtered_attendances %>
+  </div>
+</div>
 
-<h4> <%= "Se han registrado un total de #{@attendances_count} asistencia(s) entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h4>
-
-<%= line_chart @filtered_attendances %>
 <hr>
-
 <%= render "admin/attendances/attendance_table" %>
+</div>

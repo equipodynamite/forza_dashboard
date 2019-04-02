@@ -1,0 +1,28 @@
+<div class='row justify-content-sm-center squats-form'>
+	<div class='col-sm-12 form-title'>
+		<h5>Sentadillas (Squats)</h5>
+	</div>
+	<div class='col-sm-12 form-content'>
+		<div class='form-group row justify-content-sm-center'>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.number_field :squats, placeholder: 'Repeticiones', class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.select :squats_form, options_for_select_of('squats_form'), { include_blank: 'Forma' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-12 form-col'>
+				<%= f.select :squats_rom, options_for_select_of('squats_rom'), { include_blank: 'ROM' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :squats_core, options_for_select_of('squats_core'), { include_blank: 'Core' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :squats_rhythm, options_for_select_of('squats_rhythm'), { include_blank: 'Ritmo' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-sm-12 form-col'>
+				<%= f.text_area :squats_notes, placeholder: 'Notas', class: 'form-control' %>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>

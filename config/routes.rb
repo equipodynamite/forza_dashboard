@@ -12,22 +12,24 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Dashboard Passthrough routes (redirect to appropriate namespace)
-  get 'dashboard' => 'passthrough#index'
+  get 'dashboard'            => 'passthrough#index'
   get 'dashboard/attendance' => 'passthrough#attendance'
-  get 'dashboard/payments' => 'passthrough#payments'
+  get 'dashboard/payments'   => 'passthrough#payments'
 
   # Members dashboard routes
   namespace :members do
     get 'dashboard' => 'dashboard#index'
     get 'dashboard/attendance' => 'dashboard#attendance'
-    get 'dashboard/payments' => 'dashboard#payments'
+    get 'dashboard/payments'   => 'dashboard#payments'
   end
 
   # Admin dashboard routes
   namespace :admin do
-    get 'dashboard' => 'dashboard#index'
-    get 'dashboard/attendance' => 'dashboard#attendance'
-    get 'dashboard/payments' => 'dashboard#payments'
+    get  'dashboard'            => 'dashboard#index'
+    get  'dashboard/attendance' => 'dashboard#attendance'
+    get  'dashboard/payments'   => 'dashboard#payments'
+    get  'physical_tests/new'   => 'physical_tests#new'
+    post 'physical_tests/new'   => 'physical_tests#create'
   end
 
   resources :payments, only: [:index, :create, :new]

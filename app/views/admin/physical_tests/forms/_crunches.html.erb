@@ -1,0 +1,28 @@
+<div class='row justify-content-sm-center crunches-form'>
+	<div class='col-sm-12 form-title'>
+		<h5>Abdominales (Crunches)</h5>
+	</div>
+	<div class='col-sm-12 form-content'>
+		<div class='form-group row justify-content-sm-center'>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.number_field :crunches, placeholder: 'Repeticiones', class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-6 form-col'>
+				<%= f.select :crunches_form, options_for_select_of('crunches_form'), { include_blank: 'Forma' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-4 col-sm-12 form-col'>
+				<%= f.select :crunches_rom, options_for_select_of('crunches_rom'), { include_blank: 'ROM' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :crunches_core, options_for_select_of('crunches_core'), { include_blank: 'Core' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-md-6 col-sm-12 form-col'>
+				<%= f.select :crunches_rhythm, options_for_select_of('crunches_rhythm'), { include_blank: 'Ritmo' }, class: 'form-control', required: true %>
+			</div>
+			<div class='col-sm-12 form-col'>
+				<%= f.text_area :crunches_notes, placeholder: 'Notas', class: 'form-control' %>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
