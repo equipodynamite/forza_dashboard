@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header text-white bg-primary">
-    Registro General de Asistencias 
+    Registro General de Asistencias
   </div>
   <div class="card-body scrollable-card">
     <div class="table-responsive">
@@ -21,3 +21,27 @@
     </div>
   </div>
 </div>
+<br>
+<div class="card">
+   <div class="card-body">
+     <h5 class="card-title"> Asistencias por mes </h5>
+     <%= line_chart @monthly_attendances %>
+   </div>
+</div>
+   <br>
+
+   <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"> Asistencias por semana </h5>
+        <%= line_chart @weekly_attendances %>
+     </div>
+   </div>
+
+   <br>
+
+   <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"> Frecuencia promedio de visitas por semana </h5>
+      <%= pie_chart @avg_attendances %>
+     </div>
+  </div>
