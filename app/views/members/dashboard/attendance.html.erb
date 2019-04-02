@@ -1,20 +1,26 @@
 <%= provide(:title, "Asistencias") %>
-<h1>Asistencias</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Fechas </h5>
 
-<%= form_tag("attendance", method: "get") do %>
-  <div class="field">
-    <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker' ) %>
-    <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker') %>
-    <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+    <%= form_tag("attendance", method: "get") do %>
+      <div class="field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker' ) %>
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker') %>
+        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      </div>
+
+    <% end %>
   </div>
-
-<% end %>
+</div>
 
 <br>
-
-<h4> <%= "Has ido un total de #{@filtered_attendances_count} veces entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h4>
-
-<%= line_chart @filtered_attendances %>
-<hr>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> <%= "Has ido un total de #{@filtered_attendances_count} veces entre #{TimeFormat.to_american_date(@start_date)} y #{TimeFormat.to_american_date(@end_date)}" %> </h5>
+    <%= line_chart @filtered_attendances %>
+  </div>
+</div>
+<br>
 
 <%= render "members/attendances/attendance_table" %>
