@@ -10,7 +10,7 @@ class Admin::PhysicalTestsController < ApplicationController
   def create
     @physical_test = PhysicalTest.new(physical_test_params)
     if @physical_test.save
-      redirect_to attendances_path, notice: 'Physical test was successfully created.'
+      redirect_to dashboard_attendance_path, notice: 'Physical test was successfully created.'
     else
       render :new
     end
