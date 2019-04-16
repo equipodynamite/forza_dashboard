@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get  'dashboard'            => 'dashboard#index'
     get  'dashboard/attendance' => 'dashboard#attendance'
     get  'dashboard/payments'   => 'dashboard#payments'
+    get  'dashboard/finances'   => 'dashboard#finances'
     get  'physical_tests/new'   => 'physical_tests#new'
     post 'physical_tests/new'   => 'physical_tests#create'
   end
