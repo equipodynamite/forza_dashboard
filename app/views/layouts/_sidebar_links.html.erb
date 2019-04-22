@@ -1,21 +1,29 @@
 <ul class="nav flex-column">
-    <li class="nav-item">
+  <li class="nav-item">
     <%= link_to dashboard_path, :class => nav_link_classes(dashboard_path) do %>
-    <span><i class="fe fe-bar-chart"></i></span>
-        General
+      <span><i class="fe fe-bar-chart"></i></span>
+      General
     <% end %>
-    </li>
-    <li class="nav-item">
+  </li>
+  <li class="nav-item">
     <%= link_to dashboard_attendance_path, :class => nav_link_classes(dashboard_attendance_path) do %>
-        <span><i class="fe fe-calendar"></i></span>
-        Asistencias
+      <span><i class="fe fe-calendar"></i></span>
+      Asistencias
     <% end %>
-    </li>
-    <li class="nav-item">
+  </li>
+  <li class="nav-item">
     <%= link_to dashboard_payments_path, :class => nav_link_classes(dashboard_payments_path) do %>
-        <span><i class="fe fe-money"></i></span>
-        Pagos
+      <span><i class="fe fe-money"></i></span>
+      Pagos
     <% end %>
-    </li>
-    <%= admin_links %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to dashboard_member_progress_path, class: nav_link_classes(dashboard_member_progress_path) do %>
+      <span>
+        <i class='fe fe-line-chart'></i>
+      </span>
+      Progreso
+    <% end %>
+  <%= admin_links %>
+  </li>
 </ul>
