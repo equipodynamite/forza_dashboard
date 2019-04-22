@@ -35,5 +35,4 @@ Rails.application.routes.draw do
   resources :payments, only: [:create, :edit, :destroy]
 
   resources :attendances, only: [:create, :edit, :destroy]
-  get 'attendances/autocomplete_user_username'
 end

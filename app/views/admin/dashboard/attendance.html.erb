@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title"> Registrar asistencia </h5>
     <%= form_for Attendance.new do |f| %>
-        <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
+        <%= f.text_field :username, class: "typeahead", html_options: { placeholder: "Nombre de usuario" } %>
         <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
         <%= f.submit 'Crear', class: "btn btn-primary"%>
     <% end %>

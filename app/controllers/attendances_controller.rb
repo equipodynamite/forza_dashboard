@@ -1,7 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
-  autocomplete :user, :username
 
   def index
     @start_date = params[:start_date]

@@ -4,7 +4,7 @@
   <h5 class="card-title">Registrar pago</h5>
     <div class="container text-left">
       <%= form_for Payment.new do |f| %>
-          <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
+          <%= f.text_field :username %>
           <%= f.text_field(:amount, value: 800) %>
           <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
           <%= f.submit 'Crear', class: "btn btn-primary"%>

@@ -20,8 +20,9 @@
 //= require Chart.bundle
 //= require chartkick
 //= require bootstrap-datepicker
-//= require jquery-ui
-//= require autocomplete-rails
+//= require plugins/typeahead/bloodhound
+//= require plugins/typeahead/typeahead.jquery
+//= require plugins/typeahead/typeahead.bundle.min
 //= require_tree .
 
 $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
