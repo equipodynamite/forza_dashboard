@@ -11,15 +11,15 @@ class Members::DashboardController < DashboardController
 
       @end_date = params[:end_date]
       @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_week)
-      @all_attendances = current_user.attendances
+      @all_attendances = current_user.attendances.order("created_at DESC")
       @filtered_attendances = @all_attendances.group_by_period(
         :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
 
       @filtered_attendances_count = @filtered_attendances.sum{ |k, v| v }
     end
 
-    def payments
-      @all_payments = current_user.payments.order('date DESC')
+    def payments      
+      @all_payments = current_user.payments.order('created_at DESC')
       @next_payment_due = next_due_date(@all_payments)
     end
 

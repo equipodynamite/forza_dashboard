@@ -1,6 +1,7 @@
 class PhysicalTest < ApplicationRecord
   belongs_to :user
   has_many :tests
+  attr_accessor :username
 
   validates :suggested_program,
             :pull_ups,

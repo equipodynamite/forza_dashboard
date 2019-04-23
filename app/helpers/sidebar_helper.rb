@@ -7,7 +7,7 @@ module SidebarHelper
 
   def admin_links_html
     "<li class='nav-item'>
-      #{link_to admin_physical_tests_new_path, class: 'nav-link' do
+      #{link_to admin_dashboard_physical_tests_new_path, class: 'nav-link' do
         "<span><i class='fe fe-heart-o'></i></span>
         Prueba Física".html_safe
       end}

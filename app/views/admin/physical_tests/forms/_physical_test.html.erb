@@ -1,10 +1,11 @@
 <div class='row justify-content-sm-center'>
   <div class='col-lg-10 col-sm-10'>
-
     <div class='row justify-content-sm-center pull-ups-form'>
-      <div class='col-sm-10 form-content'>
+      <div class='col-sm-10'>
         <div class='form-group row justify-content-sm-center'>
-          <%= f.select :user_id, User.all.pluck(:username, :id), { include_blank: 'Usuario' }, class: 'col-sm-8 form-control', required: true %>
+          <div class="form-field-large">
+            <%= f.text_field :username, class: 'form-control typeahead', placeholder: "Nombre de usuario", required: true %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,18 @@
 <%= provide(:title, "Asistencias") %>
 <div class="card">
   <div class="card-body">
+    <%= render "shared/flash_messages" %>
     <h5 class="card-title"> Registrar asistencia </h5>
     <%= form_for Attendance.new do |f| %>
-        <%= f.autocomplete_field :user_id, attendances_autocomplete_user_username_path %>
-        <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
-        <%= f.submit 'Crear', class: "btn btn-primary"%>
+      <div class="form-field">
+        <%= f.text_field :username, class: "typeahead form-control", placeholder: "Nombre de usuario" %>
+      </div>
+      <div class="form-field">
+        <%= f.text_field :date, class: "form-control", value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true %>
+      </div>
+      <div class="form-field">
+        <%= f.submit 'Registrar', class: "form-control btn btn-primary"%>
+      </div>
     <% end %>
   </div>
 </div>
@@ -15,9 +22,13 @@
   <div class="card-body">
     <h5 class="card-title"> Fechas </h5>
     <%= form_tag("attendance", method: "get") do %>
-      <div class="field">
-        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
-        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
+      <div class="form-field">
+        <%= text_field_tag :start_date, value = TimeFormat.to_american_date(@start_date), class: "form-control", "data-provide" => 'datepicker', readonly: true %>
+      </div>
+      <div class="form-field">
+        <%= text_field_tag :end_date, value = TimeFormat.to_american_date(@end_date), class: "form-control", "data-provide" => 'datepicker', readonly: true  %>
+      </div>
+      <div class="form-field">
         <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
       </div>
     <% end %>
