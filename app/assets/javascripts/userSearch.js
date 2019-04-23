@@ -7,13 +7,18 @@ var matching_users = new Bloodhound({
     cache: false
   }
 });
-$(document).ready(function() {
-  $(".typeahead").typeahead({
-    highlight: true
-  },
-  {
-    name: "user",
-    display: "username",
-    source: matching_users
+
+document.addEventListener("turbolinks:load", function() {
+  $(document).ready(function() {
+    $(".typeahead").typeahead(
+      {
+        highlight: true
+      },
+      {
+        name: "user",
+        display: "username",
+        source: matching_users
+      }
+    );
   });
 });
