@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Fechas </h5>
+    <%= form_tag("finances", method: "get") do %>
+      <div class="field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Average Lifetime </h5>
+    <%= @avg_customer_lifetime.ceil%> meses
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Average Lifetime Value </h5>
+    $<%=@lifetime_value.ceil %>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Churn Rate </h5>
+    <%= line_chart [{name: 'cancelatciones por mes', data: @cancellations_per_month}, {name: 'churn rate', data: @churn_rate}]%>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Ganancias por mes </h5>
+    <%= line_chart @money_per_month%>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Average Lifetime Value</h5>
+    <%= line_chart @avg_lifetime_value%>
+  </div>
+</div>

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
   validates :email, :username, presence: true
 
-  after_create :assign_default_role
+  after_create :assign_default_role, :set_active_to_true
 
   attr_accessor :login
 
@@ -33,5 +33,9 @@ class User < ApplicationRecord
 
   def assign_default_role
     self.add_role :member if self.roles.blank?
+  end
+
+  def set_active_to_true
+    self.active = true
   end
 end

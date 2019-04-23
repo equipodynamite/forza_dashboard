@@ -57,6 +57,31 @@ class Admin::DashboardController < DashboardController
 
     end
 
+    def finances
+      @start_date = params[:start_date]
+      @start_date = TimeFormat.from_american_date(@start_date, 1.year.ago)
+      @end_date = params[:end_date]
+      @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_month)
+      @month = @start_date.beginning_of_month
+      @users_per_month = {}
+      months = 0
+      while @month < @end_date do
+        @users_per_month[@month.to_date] = User.where('created_at<? AND (last_active_date<? OR last_active_date IS NULL)', @month, @month).count
+        @month = @month + 1.month
+      end
+      @cancellations_per_month = User.all.group_by_period(:month, :last_active_date, range: @start_date..@end_date).count
+
+      @churn_rate = @cancellations_per_month.map{|x, y| [x, @users_per_month[x].zero? ? 0 : y/(@users_per_month[x] + 0.0)]}.to_h
+      @avg_lifetime = @churn_rate.map{|x, y| [x, y.zero? ? 10 : 1/(y+0.0)]}.to_h
+      @avg_lifetime_value = @avg_lifetime.map{|x, y| [x, y*800]}.to_h
+      @money_per_month = @users_per_month.map{|x, y| [x, y*800]}.to_h
+      total_money = @money_per_month.map{|x, y| y}.sum
+      avg_weekly_value = 220# money
+      @avg_customer_lifetime = @avg_lifetime.map{|x, y| y}.sum()/(@avg_lifetime.count + 0.0)
+      @lifetime_value = @avg_lifetime_value.map{|x, y| y}.sum/(@avg_lifetime_value.count + 0.0)
+
+    end
+
     def average_attendances_by_user
       average_attendances = Hash.new(0)
       range_weeks = ((@end_date - @start_date) / 1.week).round

@@ -30,10 +30,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get  'dashboard'                    => 'dashboard#index'
     get  'dashboard/attendance'         => 'dashboard#attendance'
-    get  'dashboard/member_progress'  => 'dashboard#member_progress'
+    get  'dashboard/finances'           => 'dashboard#finances'
+    get  'dashboard/member_progress'    => 'dashboard#member_progress'
     get  'dashboard/payments'           => 'dashboard#payments'
     get  'dashboard/physical_tests/new' => 'physical_tests#new'
-    post 'dashboard/physical_tests/' => 'physical_tests#create'
+    post 'dashboard/physical_tests/'    => 'physical_tests#create'
   end
 
   # User search endpoint for autocomplete
