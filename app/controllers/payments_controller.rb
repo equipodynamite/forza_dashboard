@@ -37,15 +37,15 @@ class PaymentsController < ApplicationController
 
   def create
     new_params = payment_params.clone
-    new_params[:date] = format_time(new_params[:date], Time.now)
-    new_params[:status] = "paid";
-    @payment = Payment.new(new_params)
+    @payment = Payment.new(build_params)
     respond_to do |format|
       if @payment.save
-        format.html {redirect_to request.referrer, notice: 'Payment was successfully created.' }
+        flash[:success] = 'El pago fue registrado exitosamente.'
+        format.html {redirect_to request.referrer }
         format.json { render :show, status: :created, location: @payment }
       else
-        format.html { render :new }
+        flash[:error] = 'El pago no pudo ser registrado, favor de verificar todos los datos'
+        format.html { redirect_to request.referrer }
         format.json { render json: @payment.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +61,19 @@ class PaymentsController < ApplicationController
 
   private
 
+  def build_params
+    new_params = payment_params.clone
+    new_params[:date] = format_time(new_params[:date], Time.now)
+    new_params[:user_id] = user_id_from_username(new_params[:username])
+    new_params[:status] = "paid";
+    return new_params
+  end
+
+  def user_id_from_username(username)
+    attendance_user = User.find_by(username: username)
+    return (!attendance_user.nil?) ? attendance_user.id : nil
+  end
+
     def format_time(time, default_value)
       if time.nil?
         time = default_value
@@ -70,7 +83,7 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.fetch(:payment, {}).permit(:date, :user_id, :amount)
+      params.require(:payment).permit(:date, :username, :amount)
     end
 
 end

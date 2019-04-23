@@ -1,13 +1,22 @@
 <%= provide(:title, "Pagos") %>
 <div class="card">
   <div class="card-body">
+  <%= render "shared/flash_messages" %>
   <h5 class="card-title">Registrar pago</h5>
     <div class="container text-left">
       <%= form_for Payment.new do |f| %>
-          <%= f.text_field :username %>
-          <%= f.text_field(:amount, value: 800) %>
-          <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), "data-provide" => 'datepicker', readonly: true) %>
-          <%= f.submit 'Crear', class: "btn btn-primary"%>
+      <div class="form-field">
+          <%= f.text_field :username, class: "typeahead form-control", placeholder: "Nombre de usuario"%>
+      </div>
+      <div class="form-field">
+          <%= f.text_field(:amount, placeholder: "Cantidad", class: "form-control") %>
+      </div>
+      <div class="form-field">
+          <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), class: "form-control", "data-provide" => 'datepicker', readonly: true) %>
+      </div>
+      <div class="form-field">
+          <%= f.submit 'Registrar', class: "form-control btn btn-primary"%>
+      </div>
       <% end %>
     </div>
   </div>
@@ -17,10 +26,14 @@
   <div class="card-body">
     <h5 class="card-title">Fechas</h5>
     <%= form_tag("payments", method: "get") do %>
-      <div class="field">
-        <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker', readonly: true) %>
-        <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), "data-provide" => 'datepicker', readonly: true) %>
-        <%= submit_tag 'Buscar', class: "btn btn-primary"%>
+      <div class="form-field">
+        <%= text_field_tag(:start_date, @start_date.strftime('%m/%d/%Y'), class: "form-control", "data-provide" => 'datepicker', readonly: true) %>
+      </div>
+      <div class="form-field">
+        <%= text_field_tag(:end_date, @end_date.strftime('%m/%d/%Y'), class: "form-control", "data-provide" => 'datepicker', readonly: true) %>
+      </div>
+      <div class="form-field">
+        <%= submit_tag 'Buscar', class: "form-control btn btn-primary"%>
       </div>
     <% end %>
   </div>

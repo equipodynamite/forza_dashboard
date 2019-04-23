@@ -41,11 +41,11 @@ class AttendancesController < ApplicationController
    @attendance = Attendance.new(build_params)
     respond_to do |format|
       if @attendance.save
-        flash[:success] = 'Attendance was successfully registered.'
+        flash[:success] = 'La asistencia fue registrada exitosamente.'
         format.html { redirect_to request.referrer}
         format.json { render :show, status: :created, location: @attendance }
       else
-        flash[:error] = 'Attendance was not registered. Please check the username and try again.'
+        flash[:error] = 'La asistencia no pudo ser registrada, favor de verificar todos los datos.'
         format.html { redirect_to request.referrer }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
