@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Fechas </h5>
+    <%= form_tag("behavior", method: "get") do %>
+      <div class="field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
+        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Average Inscriptions </h5>
+    <%= @inscripctions_per_month%> inscripciones por mes
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Monthly Inscriptions </h5>
+    <%= line_chart [{name: 'Inscripciones por mes',data: @users_per_month},
+                    {name: 'Inscripciones acumuladas por mes',data: @cumulative_users_per_month} ]%>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Membership Growth  </h5>
+    <%= line_chart [{name: '% Crecimiento de membresias', data: @membership_growth}]%>
+  </div>
+</div>
+<br>

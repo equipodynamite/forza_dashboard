@@ -112,6 +112,42 @@ class Admin::DashboardController < DashboardController
       end
     end
 
+    def behavior
+      @start_date = params[:start_date]
+      @start_date = TimeFormat.from_american_date(@start_date, 1.year.ago)
+      @end_date = params[:end_date]
+      @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_month)
+      @month = @start_date.beginning_of_month
+      @users_per_month = {}
+      @cumulative_users_per_month = {}
+      @membership_growth = {}
+      months = 0
+      acum = 0
+
+      while @month < @end_date do
+        @users_per_month[@month.to_date] = User.where(created_at: @month..@month.end_of_month).count
+        growth = 0
+
+        if acum != 0 then
+          @last_month = @month - 1.month
+          growth = @users_per_month[@month.to_date] - @users_per_month[@last_month.to_date]
+          growth /= @users_per_month[@last_month.to_date]
+        end
+
+        @membership_growth[@month.to_date] = growth
+
+        @cumulative_users_per_month[@month.to_date] = @users_per_month[@month.to_date] + acum
+        acum = @cumulative_users_per_month[@month.to_date]
+        @month = @month + 1.month
+        months += 1
+      end
+
+      @inscripctions_per_month = 1.0*acum/months
+
+      @cancellations_per_month = User.all.group_by_period(:month, :last_active_date, range: @start_date..@end_date).count
+
+    end
+
 
     private
 
