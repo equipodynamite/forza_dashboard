@@ -11,7 +11,7 @@ class PassthroughController < ApplicationController
   def payments
   end
 
-  def member_progress
+  def finances
   end
 
   private
