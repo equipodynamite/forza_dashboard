@@ -94,7 +94,7 @@ class Admin::DashboardController < DashboardController
 
     def member_progress
       members_ids = PhysicalTest.pluck(:user_id).uniq
-      params[:current_member_id] ||= members_ids.first
+      params[:current_member_id] ||= members_ids.empty? ? User.last.id : members_ids.first
       @members = User.find(members_ids).pluck(:username, :id)
       @current_member = User.find(params[:current_member_id])
       member_physical_tests = PhysicalTest.where(user_id: params[:current_member_id]).limit(10)
