@@ -8,7 +8,10 @@ var matching_users = new Bloodhound({
   }
 });
 $(document).ready(function() {
-  $(".typeahead").typeahead(null, {
+  $(".typeahead").typeahead({
+    highlight: true
+  },
+  {
     name: "user",
     display: "username",
     source: matching_users

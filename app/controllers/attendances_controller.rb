@@ -38,15 +38,15 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    new_params =  attendance_params.clone
-    new_params[:date] = format_time(new_params[:date], Time.now)
-    @attendance = Attendance.new(new_params)
+   @attendance = Attendance.new(build_params)
     respond_to do |format|
       if @attendance.save
-        format.html {redirect_to request.referrer, notice: 'Attendance was successfully created.' }
+        flash[:success] = 'Attendance was successfully registered.'
+        format.html { redirect_to request.referrer}
         format.json { render :show, status: :created, location: @attendance }
       else
-        format.html { render :new }
+        flash[:error] = 'Attendance was not registered. Please check the username and try again.'
+        format.html { redirect_to request.referrer }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
@@ -74,6 +74,18 @@ class AttendancesController < ApplicationController
 
   private
 
+    def build_params
+      new_params = attendance_params.clone
+      new_params[:date] = format_time(new_params[:date], Time.now)
+      new_params[:user_id] = user_id_from_username(new_params[:username])
+      return new_params
+    end
+
+    def user_id_from_username(username)
+      attendance_user = User.find_by(username: username)
+      return (!attendance_user.nil?) ? attendance_user.id : nil
+    end
+
     def average_attendances_by_user
       average_attendances = Hash.new(0)
       range_weeks = ((@end_date - @start_date) / 1.week).round
@@ -96,6 +108,6 @@ class AttendancesController < ApplicationController
     end
 
     def attendance_params
-      params.fetch(:attendance, {}).permit(:date, :user_id)
+      params.require(:attendance).permit(:date, :username)
     end
 end
