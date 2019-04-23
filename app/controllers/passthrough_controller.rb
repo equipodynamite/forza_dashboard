@@ -14,6 +14,9 @@ class PassthroughController < ApplicationController
   def finances
   end
 
+  def member_progress
+  end
+
   private
 
   def redirect_to_role_dashboard!

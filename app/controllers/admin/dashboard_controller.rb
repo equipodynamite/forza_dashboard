@@ -73,12 +73,12 @@ class Admin::DashboardController < DashboardController
 
       @churn_rate = @cancellations_per_month.map{|x, y| [x, @users_per_month[x].zero? ? 0 : y/(@users_per_month[x] + 0.0)]}.to_h
       @avg_lifetime = @churn_rate.map{|x, y| [x, y.zero? ? 10 : 1/(y+0.0)]}.to_h
-      @avg_lifetime_value = @avg_lifetime.map{|x, y| [x, y*12*800]}.to_h
+      @avg_lifetime_value = @avg_lifetime.map{|x, y| [x, y*800]}.to_h
       @money_per_month = @users_per_month.map{|x, y| [x, y*800]}.to_h
       total_money = @money_per_month.map{|x, y| y}.sum
       avg_weekly_value = 220# money
       @avg_customer_lifetime = @avg_lifetime.map{|x, y| y}.sum()/(@avg_lifetime.count + 0.0)
-      @lifetime_value = 12 * 220 * @avg_customer_lifetime
+      @lifetime_value = @avg_lifetime_value.map{|x, y| y}.sum/(@avg_lifetime_value.count + 0.0)
 
     end
 

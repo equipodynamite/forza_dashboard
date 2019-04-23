@@ -13,10 +13,11 @@ module SidebarHelper
       end}
     </li>
     <li class='nav-item'>
-    #{link_to admin_dashboard_finances_path, class: 'nav_link' do
+      #{link_to admin_dashboard_finances_path, class: 'nav-link' do
         "<span><i class='fe fe-money'></i></span>
         Finanzas".html_safe
-    end}
-    </li>".html_safe
+      end}
+    </li>
+    ".html_safe
   end
 end
