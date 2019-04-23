@@ -70,8 +70,8 @@ class PaymentsController < ApplicationController
   end
 
   def user_id_from_username(username)
-    attendance_user = User.find_by(username: username)
-    return (!attendance_user.nil?) ? attendance_user.id : nil
+    payment_user = User.find_by(username: username)
+    return (!payment_user.nil?) ? payment_user.id : nil
   end
 
     def format_time(time, default_value)

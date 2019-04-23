@@ -8,20 +8,35 @@ class Admin::PhysicalTestsController < ApplicationController
   end
 
   def create
-    @physical_test = PhysicalTest.new(physical_test_params)
-    if @physical_test.save
-      redirect_to dashboard_attendance_path, notice: 'Physical test was successfully created.'
-    else
-      render :new
+    @physical_test = PhysicalTest.new(build_params)
+    respond_to do |format|
+      if @physical_test.save
+        flash[:success] = 'La prueba física fue registrada exitosamente.'
+        format.html { redirect_to request.referrer }
+      else
+        flash[:error] = 'La prueba física no pudo ser registrada, favor de verificar todos los datos.'
+        format.html { redirect_to request.referrer }
+      end
     end
   end
 
   private
 
+  def build_params
+    new_params = physical_test_params.clone
+    new_params[:user_id] = user_id_from_username(new_params[:username])
+    return new_params
+  end
+
+  def user_id_from_username(username)
+    physical_test_user = User.find_by(username: username)
+    return (!physical_test_user.nil?) ? physical_test_user.id : nil
+  end
+
   def physical_test_params
     params.require(:physical_test).permit(
       :date,
-      :user_id,
+      :username,
       :pull_ups,
       :pull_ups_form,
       :pull_ups_rom,
