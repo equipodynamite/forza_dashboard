@@ -13,30 +13,32 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Dashboard Passthrough routes (redirect to appropriate namespace)
-  get 'dashboard'            => 'passthrough#index'
-  get 'dashboard/attendance' => 'passthrough#attendance'
-  get 'dashboard/payments'   => 'passthrough#payments'
+  get 'dashboard'                 => 'passthrough#index'
+  get 'dashboard/attendance'      => 'passthrough#attendance'
+  get 'dashboard/payments'        => 'passthrough#payments'
+  get 'dashboard/member_progress' => 'passthrough#member_progress'
 
   # Members dashboard routes
   namespace :members do
-    get 'dashboard' => 'dashboard#index'
-    get 'dashboard/attendance' => 'dashboard#attendance'
-    get 'dashboard/payments'   => 'dashboard#payments'
+    get 'dashboard'                 => 'dashboard#index'
+    get 'dashboard/attendance'      => 'dashboard#attendance'
+    get 'dashboard/payments'        => 'dashboard#payments'
+    get 'dashboard/member_progress' => 'dashboard#member_progress'
   end
 
   # Admin dashboard routes
   namespace :admin do
-    get  'dashboard'            => 'dashboard#index'
-    get  'dashboard/attendance' => 'dashboard#attendance'
-    get  'dashboard/payments'   => 'dashboard#payments'
-    get  'physical_tests/new'   => 'physical_tests#new'
-    post 'physical_tests/new'   => 'physical_tests#create'
+    get  'dashboard'                    => 'dashboard#index'
+    get  'dashboard/attendance'         => 'dashboard#attendance'
+    get  'dashboard/member_progress'  => 'dashboard#member_progress'
+    get  'dashboard/payments'           => 'dashboard#payments'
+    get  'dashboard/physical_tests/new' => 'physical_tests#new'
+    post 'dashboard/physical_tests/' => 'physical_tests#create'
   end
 
   # User search endpoint for autocomplete
   get 'search_members/:q' => 'users#search_member'
 
   resources :payments, only: [:create, :edit, :destroy]
-
   resources :attendances, only: [:create, :edit, :destroy]
 end

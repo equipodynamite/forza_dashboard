@@ -23,6 +23,23 @@ class Members::DashboardController < DashboardController
       @next_payment_due = next_due_date(@all_payments)
     end
 
+    def member_progress
+      member_physical_tests = PhysicalTest.where(user_id: current_user.id).limit(10)
+      @info = []
+      @info << {name: "push ups", data: {}}
+      @info << {name: "pull ups", data: {}}
+      @info << {name: "squats", data: {}}
+      @info << {name: "crunches", data: {}}
+      member_physical_tests.map do |pt|
+        pt_date = pt.created_at.to_date
+        @info[0][:data][pt_date] = pt.push_ups
+        @info[1][:data][pt_date] = pt.pull_ups
+        @info[2][:data][pt_date] = pt.squats
+        @info[3][:data][pt_date] = pt.crunches
+      end
+    end
+
+
     private
 
     def is_member?

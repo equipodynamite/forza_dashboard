@@ -67,6 +67,26 @@ class Admin::DashboardController < DashboardController
       return average_attendances
     end
 
+    def member_progress
+      members_ids = PhysicalTest.pluck(:user_id).uniq
+      params[:current_member_id] ||= members_ids.first
+      @members = User.find(members_ids).pluck(:username, :id)
+      @current_member = User.find(params[:current_member_id])
+      member_physical_tests = PhysicalTest.where(user_id: params[:current_member_id]).limit(10)
+      @info = []
+      @info << {name: "push ups", data: {}}
+      @info << {name: "pull ups", data: {}}
+      @info << {name: "squats", data: {}}
+      @info << {name: "crunches", data: {}}
+      member_physical_tests.map do |pt|
+        pt_date = pt.created_at.to_date
+        @info[0][:data][pt_date] = pt.push_ups
+        @info[1][:data][pt_date] = pt.pull_ups
+        @info[2][:data][pt_date] = pt.squats
+        @info[3][:data][pt_date] = pt.crunches
+      end
+    end
+
 
     private
 
