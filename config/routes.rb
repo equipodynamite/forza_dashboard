@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get  'dashboard/attendance'         => 'dashboard#attendance'
     get  'dashboard/behavior'           => 'dashboard#behavior'
     get  'dashboard/finances'           => 'dashboard#finances'
+    get  'dashboard/members'            => 'dashboard#member_index'
     get  'dashboard/member_progress'    => 'dashboard#member_progress'
     get  'dashboard/payments'           => 'dashboard#payments'
     get  'dashboard/physical_tests/new' => 'physical_tests#new'

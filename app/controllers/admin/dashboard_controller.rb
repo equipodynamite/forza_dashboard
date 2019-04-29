@@ -148,6 +148,10 @@ class Admin::DashboardController < DashboardController
 
     end
 
+    def member_index
+      @members = User.all.with_role :member
+    end
+
 
     private
 

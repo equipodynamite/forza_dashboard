@@ -24,6 +24,12 @@ module SidebarHelper
         Comportamiento".html_safe
       end}
     </li>
+    <li class='nav-item'>
+    #{link_to admin_dashboard_members_path, class: 'nav-link' do
+      "<span><i class='fe fe-users'></i></span>
+      Miembros".html_safe
+      end}
+    </li>
     ".html_safe
   end
 end

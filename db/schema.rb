@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_100732) do
+ActiveRecord::Schema.define(version: 2019_04_29_021131) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date"
@@ -103,16 +103,13 @@ ActiveRecord::Schema.define(version: 2019_04_15_100732) do
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "phone_number"
-    t.integer "status"
     t.integer "program"
-    t.bigint "membership_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "remember_created_at"
     t.boolean "active"
     t.date "last_active_date"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["membership_id"], name: "index_users_on_membership_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
