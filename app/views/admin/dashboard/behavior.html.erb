@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Fechas </h5>
+    <%= form_tag("behavior", method: "get") do %>
+      <div class="form-field">
+        <%= text_field_tag :start_date, value = TimeFormat.to_american_date(@start_date), class: "form-control", "data-provide" => 'datepicker', readonly: true %>
+      </div>
+      <div class="form-field">
+        <%= text_field_tag :end_date, value = TimeFormat.to_american_date(@end_date), class: "form-control", "data-provide" => 'datepicker', readonly: true %>
+      </div>
+      <div class="form-field">
+        <%= submit_tag 'Buscar', class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Promedio de inscripciones </h5>
+    <p class="average-membership-report"><%= "#{@new_memberships_per_month.round(2)} inscripciones por mes" %></p>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Inscripciones mensuales </h5>
+    <%= line_chart [{name: 'Inscripciones por mes',data: @users_per_month},
+                    {name: 'Inscripciones acumuladas por mes',data: @cumulative_users_per_month} ]%>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"> Crecimiento de membresías  </h5>
+    <%= line_chart [{name: '% Crecimiento de membresias', data: @membership_growth}]%>
+  </div>
+</div>
+<br>

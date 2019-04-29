@@ -18,6 +18,12 @@ module SidebarHelper
         Finanzas".html_safe
       end}
     </li>
+    <li class='nav-item'>
+      #{link_to admin_dashboard_behavior_path, class: 'nav-link' do
+        "<span><i class='fe fe-bolt'></i></span>
+        Comportamiento".html_safe
+      end}
+    </li>
     ".html_safe
   end
 end

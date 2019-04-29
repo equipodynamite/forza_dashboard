@@ -21,7 +21,7 @@ gem 'chart-js-rails'
 gem 'chartkick'
 gem 'groupdate'
 gem 'bootstrap-datepicker-rails'
-gem 'feathericon-rails'
+gem 'feathericon-sass'
 
 
 group :development, :test do

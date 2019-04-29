@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get  'dashboard'                    => 'dashboard#index'
     get  'dashboard/attendance'         => 'dashboard#attendance'
+    get  'dashboard/behavior'           => 'dashboard#behavior'
     get  'dashboard/finances'           => 'dashboard#finances'
     get  'dashboard/member_progress'    => 'dashboard#member_progress'
     get  'dashboard/payments'           => 'dashboard#payments'
