@@ -1,0 +1,18 @@
+.tt-menu {
+    width: 150px;
+}
+
+.tt-open {
+    background-color: #FFF;
+    border: 1px solid #bdc3c7;
+    border-radius: 2px;
+}
+
+.tt-suggestion {
+    padding: 10px;
+
+    &:hover {
+        background-color: #0069D9;
+        color: #FFF;
+    }
+}

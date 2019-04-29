@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/search_member'
   devise_scope :user do
     authenticated :user do
       root to: 'passthrough#index', as: :authenticated_root
@@ -27,17 +28,19 @@ Rails.application.routes.draw do
 
   # Admin dashboard routes
   namespace :admin do
-    get  'dashboard'            => 'dashboard#index'
-    get  'dashboard/attendance' => 'dashboard#attendance'
-    get  'dashboard/payments'   => 'dashboard#payments'
-    get  'dashboard/finances'   => 'dashboard#finances'
-    get  'dashboard/behavior'   => 'dashboard#behavior'
-    get  'dashboard/member_progress' => 'dashboard#member_progress'
-    get  'physical_tests/new'   => 'physical_tests#new'
-    post 'physical_tests/new'   => 'physical_tests#create'
+    get  'dashboard'                    => 'dashboard#index'
+    get  'dashboard/attendance'         => 'dashboard#attendance'
+    get  'dashboard/behavior'           => 'dashboard#behavior'
+    get  'dashboard/finances'           => 'dashboard#finances'
+    get  'dashboard/member_progress'    => 'dashboard#member_progress'
+    get  'dashboard/payments'           => 'dashboard#payments'
+    get  'dashboard/physical_tests/new' => 'physical_tests#new'
+    post 'dashboard/physical_tests/'    => 'physical_tests#create'
   end
+
+  # User search endpoint for autocomplete
+  get 'search_members/:q' => 'users#search_member'
 
   resources :payments, only: [:create, :edit, :destroy]
   resources :attendances, only: [:create, :edit, :destroy]
-  get 'attendances/autocomplete_user_username'
 end

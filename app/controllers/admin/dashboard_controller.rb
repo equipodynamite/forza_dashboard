@@ -12,7 +12,7 @@ class Admin::DashboardController < DashboardController
       @end_date = params[:end_date]
       @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_week)
 
-      @all_attendances = Attendance.all.order("date DESC")
+      @all_attendances = Attendance.all.order("created_at DESC")
 
       @filtered_attendances = @all_attendances.group_by_period(
         :day_of_week, :date, range: @start_date..@end_date, format: "%a").count
@@ -40,7 +40,7 @@ class Admin::DashboardController < DashboardController
       @end_date = params[:end_date]
       @end_date = TimeFormat.from_american_date(@end_date, Time.now.end_of_month)
 
-      @all_payments = Payment.all.order('date DESC')
+      @all_payments = Payment.all.order('created_at DESC')
 
       @monthly_payments = @all_payments.group_by_period(
           :month, :date, range: @start_date..@end_date
@@ -94,7 +94,7 @@ class Admin::DashboardController < DashboardController
 
     def member_progress
       members_ids = PhysicalTest.pluck(:user_id).uniq
-      params[:current_member_id] ||= members_ids.first
+      params[:current_member_id] ||= members_ids.empty? ? User.last.id : members_ids.first
       @members = User.find(members_ids).pluck(:username, :id)
       @current_member = User.find(params[:current_member_id])
       member_physical_tests = PhysicalTest.where(user_id: params[:current_member_id]).limit(10)
