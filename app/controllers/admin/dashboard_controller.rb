@@ -142,7 +142,7 @@ class Admin::DashboardController < DashboardController
         months += 1
       end
 
-      @inscripctions_per_month = 1.0*acum/months
+      @new_memberships_per_month = 1.0*acum/months
 
       @cancellations_per_month = User.all.group_by_period(:month, :last_active_date, range: @start_date..@end_date).count
 

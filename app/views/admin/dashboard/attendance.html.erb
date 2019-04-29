@@ -1,7 +1,6 @@
 <%= provide(:title, "Asistencias") %>
 <div class="card">
   <div class="card-body">
-    <%= render "shared/flash_messages" %>
     <h5 class="card-title"> Registrar asistencia </h5>
     <%= form_for Attendance.new do |f| %>
       <div class="form-field">
