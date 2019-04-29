@@ -11,12 +11,6 @@ class PassthroughController < ApplicationController
   def payments
   end
 
-  def finances
-  end
-
-  def behavior
-  end
-
   def member_progress
   end
 
