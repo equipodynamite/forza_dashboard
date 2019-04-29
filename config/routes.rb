@@ -40,7 +40,8 @@ Rails.application.routes.draw do
   end
 
   # User search endpoint for autocomplete
-  get 'search_members/:q' => 'users#search_member'
+  get 'search_members/:q'            => 'users#search_member'
+  put 'toggle_member_status/:id'     => 'users#toggle_user_active', as: 'toggle_member_status'
 
   resources :payments, only: [:create, :edit, :destroy]
   resources :attendances, only: [:create, :edit, :destroy]

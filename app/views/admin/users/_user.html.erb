@@ -2,5 +2,6 @@
     <td><%= user.id %></td>
     <td><%= user.username %></td>
     <td><%= TimeFormat.to_mexican_date(user.created_at) %></td>
-    <td><%= user.active %>
+    <%= format_member_active(user.active) %>
+    <%= toggle_status_button(user) %>
 </tr>
