@@ -22,13 +22,13 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'bootstrap-datepicker-rails'
 gem 'feathericon-sass'
+gem "ffaker"
 
 
 group :development, :test do
   gem "pry"
   gem "factory_bot_rails"
   gem "rspec-rails", "~> 3.8"
-  gem "ffaker"
 
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 2.15", "< 4.0"
