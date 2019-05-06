@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def change_user_activity(user)
-    user.last_active_date = Date.today if user.active
+    user.last_active_date = (user.active) ? Date.today : nil
     user.active = !user.active
     user.save
   end
