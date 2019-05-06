@@ -14,6 +14,10 @@
       <div class="form-field">
           <%= f.text_field(:date, value: Time.now.strftime("%m/%d/%Y"), class: "form-control", "data-provide" => 'datepicker', readonly: true) %>
       </div>
+      <div class="form-check form-check-inline">
+        <%=  f.check_box :status, { class: "form-check-input" }, "late", "on_time"%>
+        <%= f.label :status, "Pago tardío", class: "form-check-label" %>
+      </div>
       <div class="form-field">
           <%= f.submit 'Registrar', class: "form-control btn btn-primary"%>
       </div>

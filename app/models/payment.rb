@@ -3,8 +3,5 @@ class Payment < ApplicationRecord
   validates_numericality_of :amount
   attr_accessor :username
 
-  enum status: {
-    paid: 0,
-    pending: 1
-  }
+  enum status: [ 'on_time', 'late']
 end

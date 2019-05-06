@@ -2,6 +2,6 @@
     <td><%= payment.id %></td>
     <td><%= payment.user.username %></td>
     <td><%= payment.date.to_date %></td>
-    <td>$<%= payment.amount %></td>
-    <td><%= payment.status %></td>
+    <td><%= payment_amount(payment.amount) %></td>
+    <%= payment_status(payment) %>
 </tr>

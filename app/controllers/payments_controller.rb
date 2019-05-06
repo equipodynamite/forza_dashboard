@@ -2,7 +2,6 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
 
   def index
-
     @start_date = params[:start_date]
     @start_date = format_time(@start_date, Time.now.beginning_of_month)
 
@@ -36,7 +35,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    new_params = payment_params.clone
     @payment = Payment.new(build_params)
     respond_to do |format|
       if @payment.save
@@ -65,7 +63,6 @@ class PaymentsController < ApplicationController
     new_params = payment_params.clone
     new_params[:date] = format_time(new_params[:date], Time.now)
     new_params[:user_id] = user_id_from_username(new_params[:username])
-    new_params[:status] = "paid";
     return new_params
   end
 
@@ -83,7 +80,7 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.require(:payment).permit(:date, :username, :amount)
+      params.require(:payment).permit(:date, :username, :status, :amount)
     end
 
 end
