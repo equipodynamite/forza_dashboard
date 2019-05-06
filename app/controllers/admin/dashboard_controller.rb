@@ -132,7 +132,7 @@ class Admin::DashboardController < DashboardController
           @last_month = @month - 1.month
           growth = @users_per_month[@month.to_date] - @users_per_month[@last_month.to_date]
           if @users_per_month[@last_month.to_date] == 0 then
-            growth = 0
+            growth = @users_per_month[@month.to_date]
           else
             growth /= @users_per_month[@last_month.to_date]
           end
