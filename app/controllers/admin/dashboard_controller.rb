@@ -131,7 +131,12 @@ class Admin::DashboardController < DashboardController
         if acum != 0 then
           @last_month = @month - 1.month
           growth = @users_per_month[@month.to_date] - @users_per_month[@last_month.to_date]
-          growth /= @users_per_month[@last_month.to_date]
+          if @users_per_month[@last_month.to_date] == 0 then
+            growth = 0
+          else
+            growth /= @users_per_month[@last_month.to_date]
+          end
+
         end
 
         @membership_growth[@month.to_date] = growth
