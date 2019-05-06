@@ -2,10 +2,14 @@
   <div class="card-body">
     <h5 class="card-title"> Fechas </h5>
     <%= form_tag("finances", method: "get") do %>
-      <div class="field">
-        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', readonly: true) %>
-        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', readonly: true) %>
-        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      <div class="form-field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker', class:"form-control", readonly: true) %>
+      </div>
+      <div class="form-field">
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker', class:"form-control", readonly: true) %>
+      </div>
+      <div class="form-field">
+        <%= submit_tag 'Buscar', class: "btn btn-primary"%>
       </div>
     <% end %>
   </div>
@@ -14,14 +18,14 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"> Average Lifetime </h5>
-    <%= @avg_customer_lifetime.ceil%> meses
+    <p class="average-membership-report"><%= @avg_customer_lifetime.ceil%> meses</p>
   </div>
 </div>
 <br>
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"> Average Lifetime Value </h5>
-    $<%=@lifetime_value.ceil %>
+    <p class="average-membership-report">$<%=@lifetime_value.ceil %></p>
   </div>
 </div>
 <br>

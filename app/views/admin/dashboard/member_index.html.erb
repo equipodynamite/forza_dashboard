@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header text-white bg-primary">
+        Registro de usuarios
+    </div>
+    <div class="card-body scrollable-card">
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr class="text-center">
+            <th>ID</th>
+            <th>Username</th>
+            <th>Join Date</th>
+            <th>Current Status</th>
+            <th>Change Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @members%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

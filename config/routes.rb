@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'users/search_member'
   devise_scope :user do
     authenticated :user do
-      root to: 'passthrough#index', as: :authenticated_root
+      root to: 'passthrough#attendance', as: :authenticated_root
     end
 
     unauthenticated :user do
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Dashboard Passthrough routes (redirect to appropriate namespace)
-  get 'dashboard'                 => 'passthrough#index'
   get 'dashboard/attendance'      => 'passthrough#attendance'
   get 'dashboard/payments'        => 'passthrough#payments'
   get 'dashboard/member_progress' => 'passthrough#member_progress'
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
     get  'dashboard/attendance'         => 'dashboard#attendance'
     get  'dashboard/behavior'           => 'dashboard#behavior'
     get  'dashboard/finances'           => 'dashboard#finances'
+    get  'dashboard/members'            => 'dashboard#member_index'
     get  'dashboard/member_progress'    => 'dashboard#member_progress'
     get  'dashboard/payments'           => 'dashboard#payments'
     get  'dashboard/physical_tests/new' => 'physical_tests#new'
@@ -39,7 +39,8 @@ Rails.application.routes.draw do
   end
 
   # User search endpoint for autocomplete
-  get 'search_members/:q' => 'users#search_member'
+  get 'search_members/:q'            => 'users#search_member'
+  put 'toggle_member_status/:id'     => 'users#toggle_user_active', as: 'toggle_member_status'
 
   resources :payments, only: [:create, :edit, :destroy]
   resources :attendances, only: [:create, :edit, :destroy]

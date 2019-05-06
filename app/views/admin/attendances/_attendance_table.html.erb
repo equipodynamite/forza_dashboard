@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= render @all_attendances%>
+          <%= render @attendance_service.all_attendances%>
         </tbody>
       </table>
     </div>
@@ -25,7 +25,7 @@
 <div class="card">
    <div class="card-body">
      <h5 class="card-title"> Asistencias por mes </h5>
-     <%= line_chart @monthly_attendances %>
+     <%= line_chart @attendance_service.monthly_attendances %>
    </div>
 </div>
    <br>
@@ -33,7 +33,7 @@
    <div class="card">
       <div class="card-body">
         <h5 class="card-title"> Asistencias por semana </h5>
-        <%= line_chart @weekly_attendances %>
+        <%= line_chart @attendance_service.weekly_attendances %>
      </div>
    </div>
 
@@ -42,6 +42,6 @@
    <div class="card">
       <div class="card-body">
         <h5 class="card-title"> Frecuencia promedio de visitas por semana </h5>
-      <%= pie_chart @avg_attendances %>
+      <%= pie_chart @attendance_service.avg_attendances %>
      </div>
   </div>
