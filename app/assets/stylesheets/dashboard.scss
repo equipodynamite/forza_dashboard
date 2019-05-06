@@ -38,3 +38,12 @@
     padding: 2px;
     width: 100%;
 }
+
+.payment-status {
+    &-on-time {
+        color: green;
+    }
+    &-late {
+        color: red;
+    }
+}

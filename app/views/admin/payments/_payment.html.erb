@@ -3,5 +3,5 @@
     <td><%= payment.user.username %></td>
     <td><%= payment.date.to_date %></td>
     <td><%= payment_amount(payment.amount) %></td>
-    <%= payment_status(payment) %>
+    <%= payment_status(payment.status) %>
 </tr>
