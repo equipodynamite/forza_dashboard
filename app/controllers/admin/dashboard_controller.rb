@@ -136,7 +136,6 @@ class Admin::DashboardController < DashboardController
           else
             growth /= @users_per_month[@last_month.to_date]
           end
-
         end
 
         @membership_growth[@month.to_date] = growth
