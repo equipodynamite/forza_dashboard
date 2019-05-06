@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def toggle_user_active
     user = User.find(params[:id])
     respond_to do |format|
-      if user.update!(active: !user.active)
+      if change_user_activity(user)
         flash[:success] = 'El estado del usuario fue cambiado exitosamente.'
         format.html { redirect_to request.referrer}
       else
@@ -21,6 +21,12 @@ class UsersController < ApplicationController
 
 
   private
+
+  def change_user_activity(user)
+    user.last_active_date = Date.today if user.active
+    user.active = !user.active
+    user.save
+  end
 
   def is_admin?
     current_user.has_role? :admin

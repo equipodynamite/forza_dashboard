@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'users/search_member'
   devise_scope :user do
     authenticated :user do
-      root to: 'passthrough#index', as: :authenticated_root
+      root to: 'passthrough#attendance', as: :authenticated_root
     end
 
     unauthenticated :user do
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Dashboard Passthrough routes (redirect to appropriate namespace)
-  get 'dashboard'                 => 'passthrough#index'
   get 'dashboard/attendance'      => 'passthrough#attendance'
   get 'dashboard/payments'        => 'passthrough#payments'
   get 'dashboard/member_progress' => 'passthrough#member_progress'

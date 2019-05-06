@@ -12,6 +12,10 @@ module MembersDashboardHelper
         (!@next_payment_due.nil?) ? has_due_date(@next_payment_due) : no_due_date
     end
 
+    def member_progress
+        render "admin/members_progress/member_progress" if @member
+    end
+
     private
 
     def has_due_date(due_date)
