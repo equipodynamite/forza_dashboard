@@ -12,22 +12,43 @@ admin.add_role :admin
 members = []
 members << member
 
-(1..19).each do |n|
+(1..50).each do |n|
     new_member = User.create(username: "Member ##{n}",
                              email: FFaker::Internet.email,
                              password: '123456',
                              password_confirmation: '123456')
+    new_member.created_at = Date.today - rand(60)
+    if n > 5 then
+      new_member.last_active_date = Date.today - rand(10)
+    end
+
+    new_member.save
+    members << new_member
 end
 
 members.each do |member|
     attendances = []
-    25.times do
-        attendances << Attendance.new(date: Date.today - rand(100),
+    15.times do
+        attendances << Attendance.new(date: Date.today - rand(60),
                                       user_id: member.id)
     end
     sorted_attendances = attendances.sort_by { |attendance| attendance.date }
     sorted_attendances.each do |attendance|
         attendance.save
+    end
+end
+
+members.each do |member|
+    payments = []
+    30.times do
+        payments << Payment.new(date: Date.today - rand(60),
+                                      user_id: member.id,
+                                    amount: 800,
+                                  status: 0)
+    end
+    sorted_payments = payments.sort_by { |payment| payment.date }
+    sorted_payments.each do |payment|
+        payment.save
     end
 end
 
@@ -390,4 +411,3 @@ PhysicalTest.create(suggested_program: "PR-Cardio",
                     crunches_rhythm: "Continua",
                     crunches_notes: "",
                     general_notes: "")
-
