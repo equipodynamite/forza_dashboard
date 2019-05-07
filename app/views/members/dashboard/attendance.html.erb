@@ -2,14 +2,16 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"> Fechas </h5>
-
     <%= form_tag("attendance", method: "get") do %>
-      <div class="field">
-        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), "data-provide" => 'datepicker' ) %>
-        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), "data-provide" => 'datepicker') %>
-        <%= submit_tag 'Buscar' ,class: "btn btn-primary"%>
+      <div class="form-field">
+        <%= text_field_tag(:start_date, TimeFormat.to_american_date(@start_date), class: "form-control", "data-provide" => 'datepicker' ) %>
       </div>
-
+      <div class="form-field">
+        <%= text_field_tag(:end_date, TimeFormat.to_american_date(@end_date), class: "form-control", "data-provide" => 'datepicker') %>
+      </div>
+      <div class="form-field">
+        <%= submit_tag 'Buscar' ,class: "form-control btn btn-primary"%>
+      </div>
     <% end %>
   </div>
 </div>
