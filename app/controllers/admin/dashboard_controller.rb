@@ -82,19 +82,16 @@ class Admin::DashboardController < DashboardController
 
       while @month < @end_date do
         @users_per_month[@month.to_date] = User.where(created_at: @month..@month.end_of_month).count
-        growth = 0
 
+        @last_month = @month - 1.month
         if acum != 0 then
-          @last_month = @month - 1.month
-          growth = @users_per_month[@month.to_date] - @users_per_month[@last_month.to_date]
-          if @users_per_month[@last_month.to_date] == 0 then
-            growth = @users_per_month[@month.to_date]
-          else
-            growth /= @users_per_month[@last_month.to_date]
-          end
-        end
+          num = @users_per_month[@month.to_date] - @users_per_month[@last_month.to_date]
 
-        @membership_growth[@month.to_date] = growth
+          if @users_per_month[@last_month.to_date] != 0 then
+            @membership_growth[@month.to_date] = 1.0 * num / @users_per_month[@last_month.to_date]
+          end
+
+        end
 
         @cumulative_users_per_month[@month.to_date] = @users_per_month[@month.to_date] + acum
         acum = @cumulative_users_per_month[@month.to_date]
